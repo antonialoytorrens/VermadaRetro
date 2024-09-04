@@ -40,7 +40,7 @@ void initRoofSpikes(Entity *e)
 static void touch(Entity *other)
 {
 	/* must hit to base of the spikes - looks better */
-	if (other != NULL && (other->type == ET_PLAYER || other->type == ET_CLONE))
+	if (other != NULL && other->type == ET_PLAYER)
 	{
 		if (other->y + other->h >= self->y + self->h)
 		{

@@ -58,7 +58,6 @@ void initLookups(void)
 	addLookup("right", CONTROL_RIGHT);
 	addLookup("jump", CONTROL_JUMP);
 	addLookup("use", CONTROL_USE);
-	addLookup("clone", CONTROL_CLONE);
 	addLookup("restart", CONTROL_RESTART);
 	addLookup("pause", CONTROL_PAUSE);
 }

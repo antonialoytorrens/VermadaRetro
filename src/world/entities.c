@@ -490,75 +490,31 @@ void resetEntities(void)
 
 	for (e = stage.entityHead.next ; e != NULL ; e = e->next)
 	{
-		if (e->type != ET_CLONE)
-		{
-			if (e->health > 0)
-			{
-				removeFromQuadtree(e, &stage.quadtree);
-			}
-
-			if (e == stage.entityTail)
-			{
-				stage.entityTail = prev;
-			}
-
-			prev->next = e->next;
-			free(e->data);
-			free(e);
-			e = prev;
-		}
-
-		prev = e;
-	}
-}
-
-void resetClones(void)
-{
-	Entity *e;
-	Walter *c;
-
-	for (e = stage.entityHead.next ; e != NULL ; e = e->next)
-	{
-		if (e->type == ET_CLONE)
+		if (e->health > 0)
 		{
 			removeFromQuadtree(e, &stage.quadtree);
-
-			e->x = stage.player->x;
-			e->y = stage.player->y;
-			e->health = 1;
-
-			c = (Walter*)e->data;
-			c->equipment = EQ_NONE;
-			c->pData = NULL;
-			c->advanceData = 1;
-
-			addToQuadtree(e, &stage.quadtree);
 		}
+
+		if (e == stage.entityTail)
+		{
+			stage.entityTail = prev;
+		}
+
+		prev->next = e->next;
+		free(e->data);
+		free(e);
+		e = prev;
 	}
 }
 
 void destroyEntities(void)
 {
 	Entity *e;
-	Walter *c;
-	CloneData *cd;
 
 	while (stage.entityHead.next)
 	{
 		e = stage.entityHead.next;
 		stage.entityHead.next = e->next;
-
-		if (e->type == ET_CLONE)
-		{
-			c = (Walter*)e->data;
-
-			while (c->dataHead)
-			{
-				cd = c->dataHead;
-				c->dataHead = cd->next;
-				free(cd);
-			}
-		}
 
 		free(e->data);
 		free(e);

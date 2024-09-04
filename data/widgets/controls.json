@@ -33,18 +33,10 @@
 	},
 	{
 		"type" : "WT_INPUT",
-		"name" : "clone",
-		"groupName" : "controls",
-		"x" : 250,
-		"y" : 350,
-		"text" : "Clone"
-	},
-	{
-		"type" : "WT_INPUT",
 		"name" : "restart",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 400,
+		"y" : 350,
 		"text" : "Restart"
 	},
 	{
@@ -52,7 +44,7 @@
 		"name" : "pause",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 450,
+		"y" : 400,
 		"text" : "Pause"
 	},
 	{
@@ -60,7 +52,7 @@
 		"name" : "back",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 550,
+		"y" : 450,
 		"text" : "Back"
 	}
 ]

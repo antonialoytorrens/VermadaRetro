@@ -134,7 +134,6 @@ static void loadSounds(void)
 	sounds[SND_PLUNGER] = loadSound("sound/plunger.ogg");
 	sounds[SND_KEY] = loadSound("sound/mortice_key_drop_on_concrete_floor.ogg");
 	sounds[SND_DEATH] = loadSound("sound/death.ogg");
-	sounds[SND_CLONE] = loadSound("sound/clone.ogg");
 	sounds[SND_NUDGE] = loadSound("sound/nudge.ogg");
 	sounds[SND_TELEPORT] = loadSound("sound/teleport.ogg");
 	sounds[SND_WIPE] = loadSound("sound/wipe.ogg");

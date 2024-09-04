@@ -45,7 +45,6 @@ void initEnding(void)
 {
 	stage.entityTail = &stage.entityHead;
 	stage.particleTail = &stage.particleHead;
-	stage.cloneDataTail = &stage.cloneDataHead;
 
 	stage.num = 0;
 

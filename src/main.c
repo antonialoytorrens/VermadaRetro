@@ -79,8 +79,6 @@ int main(int argc, char *argv[])
 
 		if (SDL_GetTicks() > nextSecond)
 		{
-			game.stats[STAT_TIME]++;
-
 			app.dev.fps = frames;
 
 			nextSecond = SDL_GetTicks() + 1000;

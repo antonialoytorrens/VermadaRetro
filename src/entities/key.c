@@ -70,7 +70,7 @@ static void tick(void)
 
 static void touch(Entity *other)
 {
-	if (self->health > 0 && other != NULL && (other->type == ET_PLAYER || other->type == ET_CLONE))
+	if (self->health > 0 && other != NULL && other->type == ET_PLAYER)
 	{
 		self->health = 0;
 
@@ -79,8 +79,6 @@ static void touch(Entity *other)
 		addPowerupParticles(self->x + self->w / 2, self->y + self->h / 2);
 
 		stage.keys++;
-
-		game.stats[STAT_KEYS]++;
 	}
 }
 

@@ -92,8 +92,6 @@ static void idle(void)
 		self->tick = erupt;
 
 		self->touch = NULL;
-
-		game.stats[STAT_FAILS]++;
 	}
 }
 
@@ -223,11 +221,9 @@ static void touch(Entity *other)
 				playPositionalSound(SND_SPLASH, CH_CLOCK, self->x, self->y, stage.player->x, stage.player->y);
 
 				playPositionalSound(SND_FLUSH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
-
-				game.stats[STAT_STAGES_COMPLETED]++;
 			}
 		}
-		else if (other->type == ET_PLAYER || other->type == ET_CLONE)
+		else if (other->type == ET_PLAYER)
 		{
 			w = (Walter*)other->data;
 

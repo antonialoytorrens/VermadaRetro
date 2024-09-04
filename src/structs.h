@@ -23,7 +23,6 @@ typedef struct Entity Entity;
 typedef struct Quadtree Quadtree;
 typedef struct InitFunc InitFunc;
 typedef struct Particle Particle;
-typedef struct CloneData CloneData;
 typedef struct cJSON cJSON;
 typedef struct StageMeta StageMeta;
 typedef struct AtlasImage AtlasImage;
@@ -154,20 +153,10 @@ typedef struct {
 	char targetName[MAX_NAME_LENGTH];
 } WaterButton;
 
-struct CloneData {
-	int frame;
-	float dx;
-	float dy;
-	int action;
-	CloneData *next;
-};
-
 typedef struct {
 	int action;
 	int equipment;
 	int advanceData;
-	CloneData *dataHead, *pData;
-	CloneData data;
 } Walter;
 
 struct Particle {
@@ -199,7 +188,6 @@ typedef struct {
 	Entity entityHead, *entityTail;
 	Entity *player;
 	Particle particleHead, *particleTail;
-	unsigned int clones, cloneLimit;
 	unsigned int time, timeLimit;
 	int keys, totalKeys;
 	int coins, totalCoins;
@@ -209,7 +197,6 @@ typedef struct {
 	int status;
 	int nextStageTimer;
 	char tips[MAX_TIPS][MAX_DESCRIPTION_LENGTH];
-	CloneData cloneDataHead, *cloneDataTail;
 	Quadtree quadtree;
 	struct {
 		int x;
@@ -230,7 +217,6 @@ typedef struct {
 	int numStages;
 	int stagesComplete;
 	StageMeta stageMetaHead;
-	unsigned int stats[STAT_MAX];
 } Game;
 
 struct Widget {

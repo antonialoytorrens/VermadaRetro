@@ -72,7 +72,7 @@ static void tick(void)
 
 static void touch(Entity *other)
 {
-	if (self->health > 0 && other != NULL && (other->type == ET_PLAYER || other->type == ET_CLONE))
+	if (self->health > 0 && other != NULL && other->type == ET_PLAYER)
 	{
 		self->health = 0;
 
@@ -84,8 +84,6 @@ static void touch(Entity *other)
 		{
 			playPositionalSound(SND_FANFARE, CH_COIN, self->x, self->y, stage.player->x, stage.player->y);
 		}
-
-		game.stats[STAT_COINS]++;
 	}
 }
 

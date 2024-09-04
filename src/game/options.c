@@ -46,7 +46,6 @@ static Widget *leftWidget;
 static Widget *rightWidget;
 static Widget *jumpWidget;
 static Widget *useWidget;
-static Widget *cloneWidget;
 static Widget *restartWidget;
 static Widget *pauseWidget;
 static void (*oldDraw)(void);
@@ -87,7 +86,6 @@ void initOptions(void (*done)(void))
 	rightWidget = getWidget("right", "controls");
 	jumpWidget = getWidget("jump", "controls");
 	useWidget = getWidget("use", "controls");
-	cloneWidget = getWidget("clone", "controls");
 	restartWidget = getWidget("restart", "controls");
 	pauseWidget = getWidget("pause", "controls");
 
@@ -239,7 +237,6 @@ static void controls(void)
 	updateControlWidget(rightWidget, CONTROL_RIGHT);
 	updateControlWidget(jumpWidget, CONTROL_JUMP);
 	updateControlWidget(useWidget, CONTROL_USE);
-	updateControlWidget(cloneWidget, CONTROL_CLONE);
 	updateControlWidget(restartWidget, CONTROL_RESTART);
 	updateControlWidget(pauseWidget, CONTROL_PAUSE);
 

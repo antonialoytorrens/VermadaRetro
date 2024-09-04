@@ -23,8 +23,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../json/cJSON.h"
 #include "../world/quadtree.h"
 #include "../system/atlas.h"
-#include "../game/stats.h"
-#include "../entities/clone.h"
 #include "../system/controls.h"
 #include "../system/text.h"
 #include "../game/ending.h"
@@ -53,7 +51,6 @@ static void logic(void);
 static void draw(void);
 static void drawBackground(void);
 static void drawHud(void);
-static void resetCloneData(void);
 static void resetStage(void);
 static void nextStage(int num);
 static void doControls(void);
@@ -68,14 +65,12 @@ static void drawGame(void);
 static void drawMenu(void);
 static void resume(void);
 static void restart(void);
-static void stats(void);
 static void options(void);
 static void quit(void);
 static void updateStageProgress(void);
 static SDL_Color getColorForItems(int current, int total);
 
 static cJSON *stageJSON;
-static int cloneWarning;
 static int showTips;
 static int tipIndex;
 static int numTips;
@@ -84,7 +79,6 @@ static AtlasImage *backgroundTile;
 static AtlasImage *tipsPrompt;
 static Widget *resumeWidget;
 static Widget *restartWidget;
-static Widget *statsWidget;
 static Widget *optionsWidget;
 static Widget *quitWidget;
 static Widget *previousWidget;
@@ -99,16 +93,12 @@ void initStage(void)
 
 	stage.entityTail = &stage.entityHead;
 	stage.particleTail = &stage.particleHead;
-	stage.cloneDataTail = &stage.cloneDataHead;
 
 	resumeWidget = getWidget("resume", "stage");
 	resumeWidget->action = resume;
 
 	restartWidget = getWidget("restart", "stage");
 	restartWidget->action = restart;
-
-	statsWidget = getWidget("stats", "stage");
-	statsWidget->action = stats;
 
 	optionsWidget = getWidget("options", "stage");
 	optionsWidget->action = options;
@@ -121,8 +111,6 @@ void initStage(void)
 	backgroundTile = getAtlasImage("gfx/tilesets/brick/0.png", 1);
 
 	tipsPrompt = getAtlasImage("gfx/main/tips.png", 1);
-
-	game.stats[STAT_STAGES_STARTED]++;
 
 	saveGame();
 
@@ -145,14 +133,11 @@ void loadStage(int randomTiles)
 
 	root = cJSON_Parse(json);
 
-	stage.cloneLimit = cJSON_GetObjectItem(root, "cloneLimit")->valueint;
 	stage.timeLimit = cJSON_GetObjectItem(root, "timeLimit")->valueint;
 
 	stage.time = (stage.timeLimit * FPS);
 
 	show = SHOW_GAME;
-
-	cloneWarning = 0;
 
 	initMap(root);
 
@@ -241,8 +226,6 @@ static void doGame(void)
 		{
 			doTimeLimit();
 		}
-
-		cloneWarning = MAX(cloneWarning - 1, 0);
 	}
 	else
 	{
@@ -307,28 +290,7 @@ static void doControls(void)
 {
 	if (stage.status == SS_INCOMPLETE)
 	{
-		if (isControl(CONTROL_CLONE))
-		{
-			clearControl(CONTROL_CLONE);
-
-			if (stage.clones < stage.cloneLimit)
-			{
-				initClone();
-
-				stage.clones++;
-
-				stage.reset = 1;
-
-				playSound(SND_CLONE, -1);
-			}
-			else if (stage.cloneLimit > 0)
-			{
-				cloneWarning = FPS * 1.5;
-
-				playSound(SND_NEGATIVE, CH_PLAYER);
-			}
-		}
-		else if (app.keyboard[SDL_SCANCODE_F1])
+		if (app.keyboard[SDL_SCANCODE_F1])
 		{
 			app.keyboard[SDL_SCANCODE_F1] = 0;
 
@@ -400,15 +362,11 @@ static void resetStage(void)
 
 	srand(256 * stage.num);
 
-	resetCloneData();
-
 	resetEntities();
 
 	initEntities(stageJSON);
 
 	dropToFloor();
-
-	resetClones();
 }
 
 static void draw(void)
@@ -532,15 +490,6 @@ static void drawHud(void)
 		blitAtlasImage(tipsPrompt, 135, 16, 1, SDL_FLIP_NONE);
 	}
 
-	if (cloneWarning > 0 && cloneWarning % 20 < 10)
-	{
-		drawText(256, 0, 32, TEXT_LEFT, app.colors.red, "Clones: %d / %d", stage.clones, stage.cloneLimit);
-	}
-	else
-	{
-		drawText(256, 0, 32, TEXT_LEFT, stage.cloneLimit > 0 ? app.colors.white : app.colors.darkGrey, "Clones: %d / %d", stage.clones, stage.cloneLimit);
-	}
-
 	drawText(512, 0, 32, TEXT_CENTER, stage.totalKeys > 0 ? app.colors.white : app.colors.darkGrey, "Keys: %d", stage.keys);
 
 	drawText(768, 0, 32, TEXT_CENTER, getColorForItems(stage.coins, stage.totalCoins), "Coins: %d / %d", stage.coins, stage.totalCoins);
@@ -602,25 +551,6 @@ static void initTips(cJSON *root)
 	showTips = numTips > 0 && app.config.tips;
 }
 
-static void resetCloneData(void)
-{
-	stage.frame = 0;
-
-	stage.cloneDataTail = &stage.cloneDataHead;
-}
-
-static void destroyCloneData(void)
-{
-	CloneData *cd;
-
-	while (stage.cloneDataHead.next)
-	{
-		cd = stage.cloneDataHead.next;
-		stage.cloneDataHead.next = cd->next;
-		free(cd);
-	}
-}
-
 void destroyStage(void)
 {
 	destroyQuadtree();
@@ -628,8 +558,6 @@ void destroyStage(void)
 	destroyEntities();
 
 	destroyParticles();
-
-	destroyCloneData();
 
 	cJSON_Delete(stageJSON);
 }
@@ -709,15 +637,6 @@ static void options(void)
 	showWidgets("stage", 0);
 
 	initOptions(returnFrom);
-}
-
-static void stats(void)
-{
-	previousWidget = statsWidget;
-
-	showWidgets("stage", 0);
-
-	initStats(returnFrom);
 }
 
 static void quit(void)

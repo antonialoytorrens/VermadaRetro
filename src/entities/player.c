@@ -31,7 +31,6 @@ extern Entity *self;
 extern Game game;
 extern Stage stage;
 
-static void recordCloneData(void);
 static void tick(void);
 static void die(void);
 static void load(cJSON *root);
@@ -87,16 +86,6 @@ static void tick(void)
 
 	p = (Walter*)self->data;
 
-	if (px != self->x)
-	{
-		game.stats[STAT_MOVED] += fabs(px - self->x);
-	}
-
-	if (abs(self->y > py))
-	{
-		game.stats[STAT_FALLEN] += self->y - py;
-	}
-
 	px = self->x;
 	py = self->y;
 
@@ -148,8 +137,6 @@ static void tick(void)
 			self->dy = -20;
 
 			playSound(SND_JUMP, CH_PLAYER);
-
-			game.stats[STAT_JUMPS]++;
 		}
 
 		if (isControl(CONTROL_USE))
@@ -160,37 +147,12 @@ static void tick(void)
 
 			if (p->equipment == EQ_WATER_PISTOL)
 			{
-				game.stats[STAT_SHOTS_FIRED]++;
-
 				fireWaterPistol();
 
 				playPositionalSound(SND_SQUIRT, CH_SHOOT, self->x, self->y, stage.player->x, stage.player->y);
 			}
 		}
-
-		if (self->dx != 0 || self->dy < 0 || p->action)
-		{
-			recordCloneData();
-		}
 	}
-}
-
-static void recordCloneData(void)
-{
-	CloneData *c;
-	Walter *p;
-
-	p = (Walter*)self->data;
-
-	c = malloc(sizeof(CloneData));
-	memset(c, 0, sizeof(CloneData));
-	stage.cloneDataTail->next = c;
-	stage.cloneDataTail = c;
-
-	c->frame = stage.frame;
-	c->dx = self->dx;
-	c->dy = self->dy;
-	c->action = p->action;
 }
 
 static void die(void)
@@ -198,17 +160,6 @@ static void die(void)
 	addDeathParticles(self->x, self->y);
 
 	playSound(SND_DEATH, CH_PLAYER);
-
-	if (stage.clones == stage.cloneLimit)
-	{
-		stage.status = SS_FAILED;
-
-		playSound(SND_FAIL, CH_CLOCK);
-
-		game.stats[STAT_FAILS]++;
-	}
-
-	game.stats[STAT_DEATHS]++;
 }
 
 static void load(cJSON *root)

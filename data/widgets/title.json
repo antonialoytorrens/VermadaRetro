@@ -17,26 +17,10 @@
 	},
 	{
 		"type" : "WT_BUTTON",
-		"name" : "stats",
-		"groupName" : "title",
-		"x" : -1,
-		"y" : 400,
-		"text" : "Stats"
-	},
-	{
-		"type" : "WT_BUTTON",
-		"name" : "story",
-		"groupName" : "title",
-		"x" : -1,
-		"y" : 450,
-		"text" : "Story"
-	},
-	{
-		"type" : "WT_BUTTON",
 		"name" : "credits",
 		"groupName" : "title",
 		"x" : -1,
-		"y" : 500,
+		"y" : 400,
 		"text" : "Credits"
 	},
 	{
@@ -44,7 +28,7 @@
 		"name" : "quit",
 		"groupName" : "title",
 		"x" : -1,
-		"y" : 550,
+		"y" : 450,
 		"text" : "Quit"
 	}
 ]

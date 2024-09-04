@@ -94,7 +94,7 @@ static void bulletTouch(Entity *other)
 {
 	if (other != NULL)
 	{
-		if (other->type == ET_PLAYER || other->type == ET_CLONE)
+		if (other->type == ET_PLAYER)
 		{
 			other->health = 0;
 

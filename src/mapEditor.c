@@ -144,7 +144,6 @@ static void saveStage(void)
 
 	root = cJSON_CreateObject();
 
-	cJSON_AddNumberToObject(root, "cloneLimit", stage.cloneLimit);
 	cJSON_AddNumberToObject(root, "timeLimit", stage.timeLimit);
 
 	saveEntities(root);

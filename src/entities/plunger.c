@@ -71,7 +71,7 @@ static void touch(Entity *other)
 {
 	Walter *w;
 
-	if (self->health > 0 && other != NULL && (other->type == ET_PLAYER || other->type == ET_CLONE))
+	if (self->health > 0 && other != NULL && other->type == ET_PLAYER)
 	{
 		w = (Walter*)other->data;
 
@@ -82,8 +82,6 @@ static void touch(Entity *other)
 			w->equipment = EQ_PLUNGER;
 
 			playPositionalSound(SND_PLUNGER, CH_ITEM, self->x, self->y, stage.player->x, stage.player->y);
-
-			game.stats[STAT_PLUNGERS]++;
 		}
 	}
 }

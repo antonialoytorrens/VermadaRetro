@@ -23,7 +23,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../system/atlas.h"
 #include "../game/credits.h"
 #include "../game/options.h"
-#include "../game/stats.h"
 #include "../system/sound.h"
 #include "../world/map.h"
 #include "../system/widgets.h"
@@ -34,7 +33,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../system/text.h"
 #include "../world/entities.h"
 #include "../system/draw.h"
-#include "../game/story.h"
 
 extern App app;
 extern Stage stage;
@@ -43,8 +41,6 @@ static void logic(void);
 static void draw(void);
 static void start(void);
 static void options(void);
-static void stats(void);
-static void story(void);
 static void credits(void);
 static void quit(void);
 
@@ -52,8 +48,6 @@ static AtlasImage *waterTexture;
 static AtlasImage *closetTexture;
 static Widget *startWidget;
 static Widget *optionsWidget;
-static Widget *statsWidget;
-static Widget *storyWidget;
 static Widget *creditsWidget;
 static Widget *quitWidget;
 static Widget *previousWidget;
@@ -68,12 +62,6 @@ void initTitle(void)
 
 	optionsWidget = getWidget("options", "title");
 	optionsWidget->action = options;
-
-	statsWidget = getWidget("stats", "title");
-	statsWidget->action = stats;
-
-	storyWidget = getWidget("story", "title");
-	storyWidget->action = story;
 
 	creditsWidget = getWidget("credits", "title");
 	creditsWidget->action = credits;
@@ -147,7 +135,8 @@ static void draw(void)
 
 	if (previousWidget != creditsWidget)
 	{
-		drawText(10, SCREEN_HEIGHT - 35, 32, TEXT_LEFT, app.colors.white, "Copyright Parallel Realities, 2019-2020");
+		drawText(10, SCREEN_HEIGHT - 65, 32, TEXT_LEFT, app.colors.white, "Copyright Parallel Realities, 2019-2020");
+		drawText(10, SCREEN_HEIGHT - 35, 32, TEXT_LEFT, app.colors.white, "Copyright Antoni Aloy Torrens, 2024");
 		drawText(SCREEN_WIDTH - 10, SCREEN_HEIGHT - 35, 32, TEXT_RIGHT, app.colors.white, "Version %.1f.%d", VERSION, REVISION);
 	}
 
@@ -184,24 +173,6 @@ static void options(void)
 	initOptions(returnFrom);
 
 	previousWidget = optionsWidget;
-}
-
-static void stats(void)
-{
-	showWidgets("title", 0);
-
-	initStats(returnFrom);
-
-	previousWidget = statsWidget;
-}
-
-static void story(void)
-{
-	showWidgets("title", 0);
-
-	initStory(returnFrom);
-
-	previousWidget = storyWidget;
 }
 
 static void credits(void)

@@ -23,7 +23,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../json/cJSON.h"
 #include "../world/entities.h"
 #include "../system/atlas.h"
-#include "../entities/clone.h"
 #include "../system/sound.h"
 
 extern Entity *self;
@@ -91,11 +90,11 @@ static void touch(Entity *other)
 
 	if (other != NULL)
 	{
-		if (other->type == ET_PLAYER || other->type == ET_CLONE)
+		if (other->type == ET_PLAYER)
 		{
 			w = (Walter*)other->data;
 
-			if (w->action && (other->type == ET_PLAYER || (other->type == ET_CLONE && isValidCloneFrame(w))))
+			if (w->action && other->type == ET_PLAYER)
 			{
 				w->action = 0;
 
