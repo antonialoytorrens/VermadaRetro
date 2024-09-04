@@ -17,18 +17,10 @@
 	},
 	{
 		"type" : "WT_BUTTON",
-		"name" : "stats",
-		"groupName" : "stage",
-		"x" : -1,
-		"y" : 350,
-		"text" : "Stats"
-	},
-	{
-		"type" : "WT_BUTTON",
 		"name" : "options",
 		"groupName" : "stage",
 		"x" : -1,
-		"y" : 425,
+		"y" : 350,
 		"text" : "Options"
 	},
 	{
@@ -36,7 +28,7 @@
 		"name" : "quit",
 		"groupName" : "stage",
 		"x" : -1,
-		"y" : 500,
+		"y" : 425,
 		"text" : "Quit"
 	}
 ]
