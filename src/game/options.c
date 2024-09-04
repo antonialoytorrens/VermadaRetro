@@ -253,8 +253,6 @@ static void back(void)
 {
 	if (show == SHOW_NORMAL)
 	{
-		saveConfig();
-
 		returnFromOptions();
 	}
 	else

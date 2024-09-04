@@ -112,8 +112,6 @@ void initStage(void)
 
 	tipsPrompt = getAtlasImage("gfx/main/tips.png", 1);
 
-	saveGame();
-
 	initWipe(WIPE_IN);
 
 	playSound(SND_WIPE, CH_PLAYER);

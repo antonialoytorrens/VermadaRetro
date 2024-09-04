@@ -86,8 +86,6 @@ void initTitle(void)
 
 	previousWidget = NULL;
 
-	saveGame();
-
 	randomizeTiles();
 
 	initWipe(WIPE_FADE);

@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../system/textures.h"
 #include "../system/text.h"
 #include "../system/atlas.h"
-#include "../plat/win32/win32Init.h"
+#include "../system/io.h"
 #include "../world/entityFactory.h"
 
 extern App app;
@@ -61,9 +61,7 @@ void initSDL(void)
 		exit(1);
 	}
 
-	createSaveFolder();
-
-	loadConfig();
+	loadConfig(getFileLocation("data/config/config.json"));
 
 	if (app.config.fullscreen)
 	{

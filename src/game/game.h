@@ -18,7 +18,4 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
-void saveConfig(void);
-void loadConfig(void);
-void saveGame(void);
-void loadGame(void);
+void loadConfig(const char *filename);
