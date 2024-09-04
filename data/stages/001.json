@@ -1,16 +1,48 @@
 {
-	"cloneLimit":	0,
 	"timeLimit":	3600,
-	"entities":	[{
+	"entities":	[
+		{
 			"x":	64,
 			"y":	352,
 			"type":	"player",
 			"facing":	"right"
+		},
+		{
+			"x":	205,
+			"y":	340,
+			"type":	"coin"
 		}, {
+			"x":	235,
+			"y":	340,
+			"type":	"coin"
+		}, {
+			"x":	265,
+			"y":	340,
+			"type":	"coin"
+		},
+		{
+			"x":	295,
+			"y":	340,
+			"type":	"item",
+			"textureFilename" : "gfx/entities/item01.png"
+		},
+		{
+			"x":	325,
+			"y":	340,
+			"type":	"item",
+			"textureFilename" : "gfx/entities/item01.png"
+		},
+		{
+			"x":	355,
+			"y":	340,
+			"type":	"item",
+			"textureFilename" : "gfx/entities/item01.png"
+		},
+		{
 			"x":	1200,
 			"y":	544,
-			"type":	"toilet",
-			"facing":	"left"
+			"type":	"finalToilet",
+			"facing": "left"
 		}],
 	"tips":	[
 		"Welcome to Water Closet! Your goal in each stage is to escape down the toilet.",

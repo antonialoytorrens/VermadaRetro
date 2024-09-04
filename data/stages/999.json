@@ -1,5 +1,4 @@
 {
-	"cloneLimit":	0,
 	"timeLimit":	5000,
 	"entities":	[{
 			"type":	"player",
