@@ -24,14 +24,6 @@
 		"rotated" : 0
 	},
 	{
-		"filename" : "gfx/entities/door.png",
-		"x" : 151,
-		"y" : 0,
-		"w" : 16,
-		"h" : 96,
-		"rotated" : 0
-	},
-	{
 		"filename" : "gfx/particles/light.png",
 		"x" : 168,
 		"y" : 0,

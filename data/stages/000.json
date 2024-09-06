@@ -12,11 +12,6 @@
 			"y":	592,
 			"facing":	"right"
 		}, {
-			"type":	"door",
-			"x":	16,
-			"y":	264,
-			"open":	0
-		}, {
 			"type":	"platform",
 			"x":	1040,
 			"y":	384,

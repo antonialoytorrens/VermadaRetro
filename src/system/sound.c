@@ -144,7 +144,6 @@ static void loadSounds(void)
 	sounds[SND_EXPIRED] = loadSound("sound/expired.ogg");
 	sounds[SND_NEGATIVE] = loadSound("sound/negative.ogg");
 	sounds[SND_FANFARE] = loadSound("sound/449069__ricniclas__fanfare.ogg");
-	sounds[SND_DOOR] = loadSound("sound/426770__cmilan__drawer-close.ogg");
 	sounds[SND_TRAFFIC_LIGHT] = loadSound("sound/264446__kickhat__open-button-1.ogg");
 	sounds[SND_FAIL] = loadSound("sound/fail.ogg");
 	sounds[SND_ITEM] = loadSound("sound/item.ogg");

@@ -109,14 +109,6 @@ typedef struct {
 } Platform;
 
 typedef struct {
-	float sx;
-	float sy;
-	float ex;
-	float ey;
-	int open;
-} Door;
-
-typedef struct {
 	float bobValue;
 } Collectable;
 
