@@ -352,8 +352,6 @@ static void resetStage(void)
 {
 	stage.reset = 0;
 
-	stage.keys = stage.totalKeys = 0;
-
 	stage.items = stage.totalItems = 0;
 
 	stage.coins = stage.totalCoins = 0;
@@ -488,11 +486,9 @@ static void drawHud(void)
 		blitAtlasImage(tipsPrompt, 135, 16, 1, SDL_FLIP_NONE);
 	}
 
-	drawText(512, 0, 32, TEXT_CENTER, stage.totalKeys > 0 ? app.colors.white : app.colors.darkGrey, "Keys: %d", stage.keys);
+	drawText(512, 0, 32, TEXT_CENTER, getColorForItems(stage.coins, stage.totalCoins), "Coins: %d / %d", stage.coins, stage.totalCoins);
 
-	drawText(768, 0, 32, TEXT_CENTER, getColorForItems(stage.coins, stage.totalCoins), "Coins: %d / %d", stage.coins, stage.totalCoins);
-
-	drawText(1024, 0, 32, TEXT_CENTER, getColorForItems(stage.items, stage.totalItems), "Items: %d / %d", stage.items, stage.totalItems);
+	drawText(768, 0, 32, TEXT_CENTER, getColorForItems(stage.items, stage.totalItems), "Items: %d / %d", stage.items, stage.totalItems);
 
 	s = (stage.time / 60) % 60;
 	m = stage.time / 3600;

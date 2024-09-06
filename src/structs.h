@@ -181,7 +181,6 @@ typedef struct {
 	Entity *player;
 	Particle particleHead, *particleTail;
 	unsigned int time, timeLimit;
-	int keys, totalKeys;
 	int coins, totalCoins;
 	int items, totalItems;
 	int frame;

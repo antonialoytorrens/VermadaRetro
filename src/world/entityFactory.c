@@ -36,7 +36,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../entities/coin.h"
 #include "../entities/finalToilet.h"
 #include "../entities/platform.h"
-#include "../entities/key.h"
 #include "../entities/pushBlock.h"
 #include "../entities/toilet.h"
 #include "../entities/waterPistol.h"
@@ -59,7 +58,6 @@ void initEntityFactory(void)
 	addInitFunc("coin", initCoin);
 	addInitFunc("toilet", initToilet);
 	addInitFunc("plunger", initPlunger);
-	addInitFunc("key", initKey);
 	addInitFunc("spikes", initSpikes);
 	addInitFunc("roofSpikes", initRoofSpikes);
 	addInitFunc("spitter", initSpitter);
