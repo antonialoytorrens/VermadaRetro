@@ -19,7 +19,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 void destroyEntities(void);
-void resetClones(void);
 void resetEntities(void);
 void activeEntities(char *targetName, int active);
 void drawEntities(int background);
