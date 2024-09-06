@@ -138,7 +138,6 @@ static void loadSounds(void)
 	sounds[SND_WIPE] = loadSound("sound/wipe.ogg");
 	sounds[SND_SPIT] = loadSound("sound/434479__dersuperanton__splatter.ogg");
 	sounds[SND_SPIT_HIT] = loadSound("sound/446115__justinvoke__wet-splat.ogg");
-	sounds[SND_MANHOLE_COVER] = loadSound("sound/429167__aropson__heavy-clang-1.ogg");
 	sounds[SND_CLOCK] = loadSound("sound/clock.ogg");
 	sounds[SND_EXPIRED] = loadSound("sound/expired.ogg");
 	sounds[SND_NEGATIVE] = loadSound("sound/negative.ogg");

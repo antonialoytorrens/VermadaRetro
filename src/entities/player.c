@@ -94,9 +94,6 @@ static void tick(void)
 
 	switch (p->equipment)
 	{
-		case EQ_MANHOLE_COVER:
-			self->atlasImage = shieldTexture;
-			break;
 
 		case EQ_PLUNGER:
 			self->atlasImage = plungerTexture;
@@ -130,7 +127,7 @@ static void tick(void)
 			self->facing = FACING_RIGHT;
 		}
 
-		if (isControl(CONTROL_JUMP) && self->isOnGround && p->equipment != EQ_MANHOLE_COVER)
+		if (isControl(CONTROL_JUMP) && self->isOnGround)
 		{
 			self->riding = NULL;
 

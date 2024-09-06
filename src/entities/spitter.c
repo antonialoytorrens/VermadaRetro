@@ -111,20 +111,18 @@ static void save(cJSON *root)
 
 static void bulletTouch(Entity *other)
 {
-	Walter *w;
 
 	if (other != NULL)
 	{
 		if (other->type == ET_PLAYER)
 		{
-			w = (Walter*)other->data;
 
 			/* hit in the back */
 			if (self->facing == other->facing)
 			{
 				other->health = 0;
 			}
-			else if (w->equipment != EQ_MANHOLE_COVER)
+			else
 			{
 				other->health = 0;
 			}

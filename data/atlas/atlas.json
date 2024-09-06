@@ -528,14 +528,6 @@
 		"rotated" : 0
 	},
 	{
-		"filename" : "gfx/entities/manholeCover.png",
-		"x" : 279,
-		"y" : 442,
-		"w" : 30,
-		"h" : 30,
-		"rotated" : 0
-	},
-	{
 		"filename" : "gfx/entities/item07.png",
 		"x" : 310,
 		"y" : 442,

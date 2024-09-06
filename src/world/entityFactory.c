@@ -28,7 +28,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../entities/slimeDrip.h"
 #include "../entities/trafficLight.h"
 #include "../entities/roofSpikes.h"
-#include "../entities/manholeCover.h"
 #include "../entities/waterButton.h"
 #include "../entities/plunger.h"
 #include "../entities/item.h"
@@ -60,7 +59,6 @@ void initEntityFactory(void)
 	addInitFunc("spikes", initSpikes);
 	addInitFunc("roofSpikes", initRoofSpikes);
 	addInitFunc("spitter", initSpitter);
-	addInitFunc("manholeCover", initManholeCover);
 	addInitFunc("trafficLight", initTrafficLight);
 	addInitFunc("item", initItem);
 	addInitFunc("platform", initPlatform);
