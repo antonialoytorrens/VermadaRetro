@@ -34,7 +34,6 @@ extern Stage stage;
 
 static void logic(void);
 static void draw(void);
-static void focusOnVomit(void);
 static void drawDarkness(void);
 static void returnFromCredits(void);
 
@@ -82,8 +81,6 @@ static void draw(void)
 {
 	app.dev.drawing = 0;
 
-	focusOnVomit();
-
 	drawEntities(1);
 
 	drawMap();
@@ -113,27 +110,6 @@ static void drawDarkness(void)
 	dest.y += 150;
 
 	SDL_RenderCopyEx(app.renderer, darknessTexture->texture, &darknessTexture->rect, &dest, 0, NULL, SDL_FLIP_NONE);
-}
-
-static void focusOnVomit(void)
-{
-	Entity *e;
-
-	for (e = stage.entityHead.next ; e != NULL ; e = e->next)
-	{
-		if (e->type == ET_VOMIT_TOILET)
-		{
-			stage.camera.x = (int) e->x + (e->w / 2);
-			stage.camera.y = (int) e->y + (e->h / 2);
-
-			stage.camera.x -= (SCREEN_WIDTH / 2);
-			stage.camera.y -= (SCREEN_HEIGHT / 2);
-
-			stage.camera.y -= 200;
-
-			return;
-		}
-	}
 }
 
 static void returnFromCredits(void)

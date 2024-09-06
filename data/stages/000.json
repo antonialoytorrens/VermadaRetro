@@ -98,10 +98,6 @@
 			"x":	1200,
 			"y":	144
 		}, {
-			"type":	"vomitToilet",
-			"x":	2072,
-			"y":	496
-		}, {
 			"type":	"decoration",
 			"x":	2144,
 			"y":	432,

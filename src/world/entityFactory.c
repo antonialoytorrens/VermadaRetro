@@ -25,7 +25,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../entities/spitter.h"
 #include "../entities/player.h"
 #include "../entities/pressurePlate.h"
-#include "../entities/vomitToilet.h"
 #include "../entities/slimeDrip.h"
 #include "../entities/trafficLight.h"
 #include "../entities/roofSpikes.h"
@@ -71,7 +70,6 @@ void initEntityFactory(void)
 	addInitFunc("waterPistol", initWaterPistol);
 	addInitFunc("waterButton", initWaterButton);
 	addInitFunc("finalToilet", initFinalToilet);
-	addInitFunc("vomitToilet", initVomitToilet);
 	addInitFunc("decoration", initDecoration);
 
 	entityId = 0;
