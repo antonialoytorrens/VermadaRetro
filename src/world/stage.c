@@ -381,7 +381,7 @@ static void draw(void)
 	drawWipe();
 }
 
-static void drawGame()
+static void drawGame(void)
 {
 	app.dev.drawing = 0;
 
@@ -405,7 +405,7 @@ static void drawGame()
 	}
 }
 
-static void drawMenu()
+static void drawMenu(void)
 {
 	drawGame();
 
