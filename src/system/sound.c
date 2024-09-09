@@ -130,27 +130,16 @@ static void loadSounds(void)
 {
 	sounds[SND_JUMP] = loadSound("sound/331381__qubodup__public-domain-jump-sound.ogg");
 	sounds[SND_COIN] = loadSound("sound/135936__bradwesson__collectcoin.ogg");
-	sounds[SND_FLUSH] = loadSound("sound/108413__kyle1katarn__toilet.ogg");
-	sounds[SND_DEATH] = loadSound("sound/death.ogg");
-	sounds[SND_NUDGE] = loadSound("sound/nudge.ogg");
-	sounds[SND_TELEPORT] = loadSound("sound/teleport.ogg");
-	sounds[SND_WIPE] = loadSound("sound/wipe.ogg");
-	sounds[SND_SPIT] = loadSound("sound/434479__dersuperanton__splatter.ogg");
-	sounds[SND_SPIT_HIT] = loadSound("sound/446115__justinvoke__wet-splat.ogg");
+	sounds[SND_FINISH] = loadSound("sound/108413__kyle1katarn__toilet.ogg");
 	sounds[SND_CLOCK] = loadSound("sound/clock.ogg");
+	sounds[SND_NUDGE] = loadSound("sound/nudge.ogg");
+	sounds[SND_WIPE] = loadSound("sound/wipe.ogg");
 	sounds[SND_EXPIRED] = loadSound("sound/expired.ogg");
 	sounds[SND_NEGATIVE] = loadSound("sound/negative.ogg");
 	sounds[SND_FANFARE] = loadSound("sound/449069__ricniclas__fanfare.ogg");
-	sounds[SND_TRAFFIC_LIGHT] = loadSound("sound/264446__kickhat__open-button-1.ogg");
-	sounds[SND_FAIL] = loadSound("sound/fail.ogg");
+	sounds[SND_DEATH] = loadSound("sound/fail.ogg");
 	sounds[SND_ITEM] = loadSound("sound/item.ogg");
 	sounds[SND_TIP] = loadSound("sound/tip.ogg");
-	sounds[SND_PRESSURE_PLATE] = loadSound("sound/245242__noirenex__beepping.ogg");
-	sounds[SND_SPLASH] = loadSound("sound/398032__swordofkings128__splash.ogg");
-	sounds[SND_DRIP] = loadSound("sound/25879__acclivity__drip1.ogg");
-	sounds[SND_SQUIRT] = loadSound("sound/258047__jagadamba__water-spraying-from-a-bottle-02.mp3");
-	sounds[SND_INFLATE] = loadSound("sound/110043__sandyrb__fart-005.ogg");
-	sounds[SND_DEFLATE] = loadSound("sound/110051__sandyrb__fart-013.ogg");
 }
 
 void loadRandomStageMusic(int forceRandom)

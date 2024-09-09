@@ -85,7 +85,6 @@ struct Entity {
 	void (*load)(cJSON *root);
 	void (*save)(cJSON *root);
 	long flags;
-	Entity *riding;
 	Entity *next;
 };
 
@@ -122,32 +121,7 @@ typedef struct {
 } Item;
 
 typedef struct {
-	int interval;
-	int reload;
-	int enabled;
-} Spitter;
-
-typedef struct {
-	int on;
-	char targetName[MAX_NAME_LENGTH];
-} TrafficLight;
-
-typedef struct {
-	int weight;
-	char targetName[MAX_NAME_LENGTH];
-} PressurePlate;
-
-typedef struct {
-	int waterLevel;
-	int inflated;
-	int emptyRate;
-	int emptyTimer;
-	char targetName[MAX_NAME_LENGTH];
-} WaterButton;
-
-typedef struct {
 	int action;
-	int equipment;
 	int advanceData;
 } Walter;
 

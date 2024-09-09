@@ -22,20 +22,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "entityFactory.h"
 #include "../json/cJSON.h"
 #include "../entities/decoration.h"
-#include "../entities/spitter.h"
 #include "../entities/player.h"
-#include "../entities/pressurePlate.h"
-#include "../entities/slimeDrip.h"
-#include "../entities/trafficLight.h"
 #include "../entities/roofSpikes.h"
-#include "../entities/waterButton.h"
 #include "../entities/item.h"
 #include "../entities/coin.h"
 #include "../entities/finalToilet.h"
 #include "../entities/platform.h"
-#include "../entities/pushBlock.h"
 #include "../entities/toilet.h"
-#include "../entities/waterPistol.h"
 #include "../entities/spikes.h"
 
 extern Entity *self;
@@ -56,15 +49,8 @@ void initEntityFactory(void)
 	addInitFunc("toilet", initToilet);
 	addInitFunc("spikes", initSpikes);
 	addInitFunc("roofSpikes", initRoofSpikes);
-	addInitFunc("spitter", initSpitter);
-	addInitFunc("trafficLight", initTrafficLight);
 	addInitFunc("item", initItem);
 	addInitFunc("platform", initPlatform);
-	addInitFunc("pressurePlate", initPressurePlate);
-	addInitFunc("pushBlock", initPushBlock);
-	addInitFunc("slimeDrip", initSlimeDrip);
-	addInitFunc("waterPistol", initWaterPistol);
-	addInitFunc("waterButton", initWaterButton);
 	addInitFunc("finalToilet", initFinalToilet);
 	addInitFunc("decoration", initDecoration);
 

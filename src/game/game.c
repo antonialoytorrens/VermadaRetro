@@ -51,7 +51,6 @@ void loadConfig(const char *filename)
 	app.config.keyControls[CONTROL_LEFT] = cJSON_GetObjectItem(controls, "left")->valueint;
 	app.config.keyControls[CONTROL_RIGHT] = cJSON_GetObjectItem(controls, "right")->valueint;
 	app.config.keyControls[CONTROL_JUMP] = cJSON_GetObjectItem(controls, "jump")->valueint;
-	app.config.keyControls[CONTROL_USE] = cJSON_GetObjectItem(controls, "use")->valueint;
 	app.config.keyControls[CONTROL_RESTART] = cJSON_GetObjectItem(controls, "restart")->valueint;
 	app.config.keyControls[CONTROL_PAUSE] = cJSON_GetObjectItem(controls, "pause")->valueint;
 
@@ -60,7 +59,6 @@ void loadConfig(const char *filename)
 	app.config.joypadControls[CONTROL_LEFT] = cJSON_GetObjectItem(controls, "left")->valueint;
 	app.config.joypadControls[CONTROL_RIGHT] = cJSON_GetObjectItem(controls, "right")->valueint;
 	app.config.joypadControls[CONTROL_JUMP] = cJSON_GetObjectItem(controls, "jump")->valueint;
-	app.config.joypadControls[CONTROL_USE] = cJSON_GetObjectItem(controls, "use")->valueint;
 	app.config.joypadControls[CONTROL_RESTART] = cJSON_GetObjectItem(controls, "restart")->valueint;
 	app.config.joypadControls[CONTROL_PAUSE] = cJSON_GetObjectItem(controls, "pause")->valueint;
 

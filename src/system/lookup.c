@@ -53,7 +53,6 @@ void initLookups(void)
 	addLookup("left", CONTROL_LEFT);
 	addLookup("right", CONTROL_RIGHT);
 	addLookup("jump", CONTROL_JUMP);
-	addLookup("use", CONTROL_USE);
 	addLookup("restart", CONTROL_RESTART);
 	addLookup("pause", CONTROL_PAUSE);
 }

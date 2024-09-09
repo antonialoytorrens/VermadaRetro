@@ -236,7 +236,6 @@ static void controls(void)
 	updateControlWidget(leftWidget, CONTROL_LEFT);
 	updateControlWidget(rightWidget, CONTROL_RIGHT);
 	updateControlWidget(jumpWidget, CONTROL_JUMP);
-	updateControlWidget(useWidget, CONTROL_USE);
 	updateControlWidget(restartWidget, CONTROL_RESTART);
 	updateControlWidget(pauseWidget, CONTROL_PAUSE);
 

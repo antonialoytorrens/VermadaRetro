@@ -183,9 +183,7 @@ static void touch(Entity *other)
 
 			stage.nextStageTimer = FPS * 3;
 
-			playPositionalSound(SND_SPLASH, CH_CLOCK, self->x, self->y, stage.player->x, stage.player->y);
-
-			playPositionalSound(SND_FLUSH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
+			playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
 		}
 	}
 }

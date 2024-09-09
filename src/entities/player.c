@@ -92,17 +92,6 @@ static void tick(void)
 	self->dx = 0;
 	p->action = 0;
 
-	switch (p->equipment)
-	{
-		case EQ_WATER_PISTOL:
-			self->atlasImage = waterPistolTexture;
-			break;
-
-		default:
-			self->atlasImage = normalTexture;
-			break;
-	}
-
 	self->w = self->atlasImage->rect.w;
 	self->h = self->atlasImage->rect.h;
 
@@ -124,25 +113,9 @@ static void tick(void)
 
 		if (isControl(CONTROL_JUMP) && self->isOnGround)
 		{
-			self->riding = NULL;
-
 			self->dy = -20;
 
 			playSound(SND_JUMP, CH_PLAYER);
-		}
-
-		if (isControl(CONTROL_USE))
-		{
-			clearControl(CONTROL_USE);
-
-			p->action = 1;
-
-			if (p->equipment == EQ_WATER_PISTOL)
-			{
-				fireWaterPistol();
-
-				playPositionalSound(SND_SQUIRT, CH_SHOOT, self->x, self->y, stage.player->x, stage.player->y);
-			}
 		}
 	}
 }
@@ -162,64 +135,5 @@ static void load(cJSON *root)
 static void save(cJSON *root)
 {
 	cJSON_AddStringToObject(root, "facing", self->facing == 0 ? "left" : "right");
-}
-
-/* === Water pistol bullets === */
-
-static void bulletTouch(Entity *other)
-{
-	if (other != NULL)
-	{
-		if (other->type == ET_BULLET)
-		{
-			other->health = self->health = 0;
-
-			playPositionalSound(SND_SPIT_HIT, CH_HIT, self->x, self->y, stage.player->x, stage.player->y);
-		}
-		else if (other->flags & EF_SOLID)
-		{
-			self->health = 0;
-
-			playPositionalSound(SND_SPIT_HIT, CH_HIT, self->x, self->y, stage.player->x, stage.player->y);
-		}
-	}
-	else
-	{
-		self->health = 0;
-
-		playPositionalSound(SND_SPIT_HIT, CH_HIT, self->x, self->y, stage.player->x, stage.player->y);
-	}
-}
-
-static void bulletDie(void)
-{
-	addWaterBurstParticles(self->x, self->y);
-}
-
-void fireWaterPistol(void)
-{
-	Entity *e;
-
-	e = spawnEntity();
-
-	e->type = ET_BULLET;
-	e->typeName = "bullet";
-	e->x = self->x;
-	e->y = self->y;
-	e->facing = self->facing;
-	e->dx = self->facing ? 12 : -12;
-	e->flags = EF_WEIGHTLESS+EF_NO_MAP_BOUNDS;
-	e->atlasImage = bulletTexture;
-	e->w = e->atlasImage->rect.w;
-	e->h = e->atlasImage->rect.h;
-	e->touch = bulletTouch;
-	e->die = bulletDie;
-
-	e->y += (e->h / 2);
-
-	if (e->facing)
-	{
-		e->x += self->w;
-	}
 }
 

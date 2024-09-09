@@ -112,11 +112,6 @@ void doEntities(void)
 	{
 		removeFromQuadtree(e, &stage.quadtree);
 
-		if (e->riding != NULL)
-		{
-			push(e, e->riding->dx, 0);
-		}
-
 		if (!(e->flags & (EF_NO_WORLD_CLIP|EF_NO_MAP_BOUNDS)))
 		{
 			e->x = MIN(MAX(e->x, stage.camera.minX), stage.camera.maxX - (e->w + 16));
@@ -134,13 +129,6 @@ static void move(Entity *e)
 		e->dy += 1.5;
 		e->dy = MAX(MIN(e->dy, 18), -999);
 	}
-
-	if (e->riding != NULL && e->riding->dy > 0)
-	{
-		e->dy = e->riding->dy + 1;
-	}
-
-	e->riding = NULL;
 
 	e->isOnGround = 0;
 
@@ -323,11 +311,6 @@ static void moveToEntities(Entity *e, float dx, float dy)
 						if (dy > 0)
 						{
 							e->isOnGround = 1;
-
-							if (!(e->flags & EF_WEIGHTLESS))
-							{
-								e->riding = other;
-							}
 						}
 					}
 
