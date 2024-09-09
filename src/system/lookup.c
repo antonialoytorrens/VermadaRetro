@@ -35,21 +35,6 @@ void initLookups(void)
 	addLookup("WT_SELECT", WT_SELECT);
 	addLookup("WT_INPUT", WT_INPUT);
 
-	addLookup("STAT_PERCENT_COMPLETE", STAT_PERCENT_COMPLETE);
-	addLookup("STAT_STAGES_STARTED", STAT_STAGES_STARTED);
-	addLookup("STAT_STAGES_COMPLETED", STAT_STAGES_COMPLETED);
-	addLookup("STAT_FAILS", STAT_FAILS);
-	addLookup("STAT_DEATHS", STAT_DEATHS);
-	addLookup("STAT_PLUNGERS", STAT_PLUNGERS);
-	addLookup("STAT_WATER_PISTOLS", STAT_WATER_PISTOLS);
-	addLookup("STAT_ITEMS", STAT_ITEMS);
-	addLookup("STAT_COINS", STAT_COINS);
-	addLookup("STAT_JUMPS", STAT_JUMPS);
-	addLookup("STAT_MOVED", STAT_MOVED);
-	addLookup("STAT_SHOTS_FIRED", STAT_SHOTS_FIRED);
-	addLookup("STAT_FALLEN", STAT_FALLEN);
-	addLookup("STAT_TIME", STAT_TIME);
-
 	addLookup("left", CONTROL_LEFT);
 	addLookup("right", CONTROL_RIGHT);
 	addLookup("jump", CONTROL_JUMP);

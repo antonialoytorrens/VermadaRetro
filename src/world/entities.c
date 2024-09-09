@@ -37,7 +37,6 @@ static int push(Entity *e, float dx, float dy);
 static void moveToWorld(Entity *e, float dx, float dy);
 static void moveToEntities(Entity *e, float dx, float dy);
 static void loadEnts(cJSON *root);
-static int canPush(Entity *e, Entity *other);
 static void drawEntityLight(Entity *e);
 
 static Entity deadListHead, *deadListTail;
@@ -237,7 +236,6 @@ static void moveToEntities(Entity *e, float dx, float dy)
 {
 	Entity *other, *oldSelf, *candidates[MAX_QT_CANDIDATES];
 	int adj, i;
-	float pushPower;
 
 	getAllEntsWithin(e->x, e->y, e->w, e->h, candidates, e);
 
