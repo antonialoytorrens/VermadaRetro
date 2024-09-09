@@ -25,18 +25,10 @@
 	},
 	{
 		"type" : "WT_INPUT",
-		"name" : "use",
-		"groupName" : "controls",
-		"x" : 250,
-		"y" : 300,
-		"text" : "Use"
-	},
-	{
-		"type" : "WT_INPUT",
 		"name" : "restart",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 350,
+		"y" : 250,
 		"text" : "Restart"
 	},
 	{
@@ -44,7 +36,7 @@
 		"name" : "pause",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 400,
+		"y" : 300,
 		"text" : "Pause"
 	},
 	{
@@ -52,7 +44,7 @@
 		"name" : "back",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 450,
+		"y" : 350,
 		"text" : "Back"
 	}
 ]
