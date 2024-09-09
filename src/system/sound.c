@@ -131,7 +131,6 @@ static void loadSounds(void)
 	sounds[SND_JUMP] = loadSound("sound/331381__qubodup__public-domain-jump-sound.ogg");
 	sounds[SND_COIN] = loadSound("sound/135936__bradwesson__collectcoin.ogg");
 	sounds[SND_FLUSH] = loadSound("sound/108413__kyle1katarn__toilet.ogg");
-	sounds[SND_PLUNGER] = loadSound("sound/plunger.ogg");
 	sounds[SND_DEATH] = loadSound("sound/death.ogg");
 	sounds[SND_NUDGE] = loadSound("sound/nudge.ogg");
 	sounds[SND_TELEPORT] = loadSound("sound/teleport.ogg");
@@ -146,7 +145,6 @@ static void loadSounds(void)
 	sounds[SND_FAIL] = loadSound("sound/fail.ogg");
 	sounds[SND_ITEM] = loadSound("sound/item.ogg");
 	sounds[SND_TIP] = loadSound("sound/tip.ogg");
-	sounds[SND_PLUNGE] = loadSound("sound/plunge.ogg");
 	sounds[SND_PRESSURE_PLATE] = loadSound("sound/245242__noirenex__beepping.ogg");
 	sounds[SND_SPLASH] = loadSound("sound/398032__swordofkings128__splash.ogg");
 	sounds[SND_DRIP] = loadSound("sound/25879__acclivity__drip1.ogg");

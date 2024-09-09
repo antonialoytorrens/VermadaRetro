@@ -114,38 +114,6 @@ static void stink(void)
 	self->atlasImage = stinkFrames[t->frameNum];
 }
 
-static void plunging(void)
-{
-	Toilet *t;
-
-	t = (Toilet*)self->data;
-
-	t->animTimer++;
-
-	if (t->animTimer % 16 == 0)
-	{
-		if (++t->frameNum > 1)
-		{
-			t->frameNum = 0;
-		}
-
-		playPositionalSound(SND_PLUNGE, CH_STRUCTURE, self->x, self->y, stage.player->x, stage.player->y);
-	}
-
-	self->atlasImage = plungingFrames[t->frameNum];
-
-	if (--t->requiresPlunger <= 0)
-	{
-		self->tick = idle;
-
-		self->atlasImage = idleTexture;
-
-		self->touch = touch;
-	}
-
-	idle();
-}
-
 static void erupt(void)
 {
 	Toilet *t;
@@ -191,54 +159,33 @@ static void escape(void)
 static void touch(Entity *other)
 {
 	Toilet *t;
-	Walter *w;
 
 	if (other != NULL)
 	{
 		t = (Toilet*)self->data;
 
-		if (!t->requiresPlunger)
+		if (other->type == ET_PLAYER)
 		{
-			if (other->type == ET_PLAYER)
-			{
-				addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+			addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
 
-				self->tick = escape;
+			self->tick = escape;
 
-				self->atlasImage = escapeFrames[0];
+			self->atlasImage = escapeFrames[0];
 
-				t->animTimer = FPS;
+			t->animTimer = FPS;
 
-				other->health = 0;
+			other->health = 0;
 
-				/* just remove player */
-				other->die = NULL;
+			/* just remove player */
+			other->die = NULL;
 
-				stage.status = SS_COMPLETE;
+			stage.status = SS_COMPLETE;
 
-				stage.nextStageTimer = FPS * 3;
+			stage.nextStageTimer = FPS * 3;
 
-				playPositionalSound(SND_SPLASH, CH_CLOCK, self->x, self->y, stage.player->x, stage.player->y);
+			playPositionalSound(SND_SPLASH, CH_CLOCK, self->x, self->y, stage.player->x, stage.player->y);
 
-				playPositionalSound(SND_FLUSH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
-			}
-		}
-		else if (other->type == ET_PLAYER)
-		{
-			w = (Walter*)other->data;
-
-			if (w->equipment == EQ_PLUNGER)
-			{
-				w->equipment = EQ_NONE;
-
-				self->tick = plunging;
-
-				self->touch = NULL;
-			}
-			else
-			{
-				other->health = 0;
-			}
+			playPositionalSound(SND_FLUSH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
 		}
 	}
 }

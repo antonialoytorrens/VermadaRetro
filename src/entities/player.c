@@ -94,11 +94,6 @@ static void tick(void)
 
 	switch (p->equipment)
 	{
-
-		case EQ_PLUNGER:
-			self->atlasImage = plungerTexture;
-			break;
-
 		case EQ_WATER_PISTOL:
 			self->atlasImage = waterPistolTexture;
 			break;
