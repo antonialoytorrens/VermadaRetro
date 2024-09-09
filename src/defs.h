@@ -77,16 +77,8 @@ enum
 	ET_TOILET,
 	ET_ITEM,
 	ET_STRUCTURE,
-	ET_BULLET,
 	ET_TRAP,
-	ET_SWITCH,
 	ET_DECORATION
-};
-
-enum
-{
-	EQ_NONE,
-	EQ_WATER_PISTOL
 };
 
 enum

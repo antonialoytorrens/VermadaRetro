@@ -37,10 +37,6 @@ static void load(cJSON *root);
 static void save(cJSON *root);
 
 static AtlasImage *normalTexture;
-static AtlasImage *shieldTexture;
-static AtlasImage *plungerTexture;
-static AtlasImage *waterPistolTexture;
-static AtlasImage *bulletTexture;
 static float px;
 static float py;
 
@@ -57,7 +53,6 @@ void initPlayer(Entity *e)
 	e->data = p;
 	e->type = ET_PLAYER;
 	e->atlasImage = getAtlasImage("gfx/entities/guy.png", 1);
-	e->flags = EF_PUSH+EF_PUSHABLE+EF_SLOW_PUSH;
 	e->tick = tick;
 	e->die = die;
 	e->load = load;
@@ -67,14 +62,6 @@ void initPlayer(Entity *e)
 	e->h = e->atlasImage->rect.h;
 
 	normalTexture = e->atlasImage;
-
-	shieldTexture = getAtlasImage("gfx/entities/guyShield.png", 1);
-
-	plungerTexture = getAtlasImage("gfx/entities/guyPlunger.png", 1);
-
-	waterPistolTexture = getAtlasImage("gfx/entities/guyPistol.png", 1);
-
-	bulletTexture = getAtlasImage("gfx/entities/waterBullet.png", 1);
 
 	px = e->x;
 	py = e->y;
