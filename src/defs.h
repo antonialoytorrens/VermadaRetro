@@ -65,11 +65,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define EF_PUSH            (2 << 2)
 #define EF_NO_WORLD_CLIP   (2 << 3)
 #define EF_NO_MAP_BOUNDS   (2 << 4)
-#define EF_PUSHABLE        (2 << 5)
-#define EF_SLOW_PUSH       (2 << 6)
-#define EF_NO_ENT_CLIP     (2 << 7)
-#define EF_INVISIBLE       (2 << 8)
-#define EF_STATIC          (2 << 9)
+#define EF_NO_ENT_CLIP     (2 << 5)
+#define EF_INVISIBLE       (2 << 6)
+#define EF_STATIC          (2 << 7)
 
 enum
 {

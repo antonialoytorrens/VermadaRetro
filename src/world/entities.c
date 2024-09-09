@@ -249,54 +249,6 @@ static void moveToEntities(Entity *e, float dx, float dy)
 		{
 			if (!(e->flags & EF_NO_ENT_CLIP) && !(other->flags & EF_NO_ENT_CLIP))
 			{
-				if (canPush(e, other))
-				{
-					removeFromQuadtree(other, &stage.quadtree);
-
-					pushPower = e->flags & EF_SLOW_PUSH ? 0.5f : 1.0f;
-
-					oldSelf = self;
-
-					self = other;
-
-					if (dx != 0)
-					{
-						if (!push(other, e->dx * pushPower, 0))
-						{
-							e->x = other->x;
-
-							if (e->dx > 0)
-							{
-								e->x -= e->w;
-							}
-							else
-							{
-								e->x += other->w;
-							}
-						}
-					}
-
-					if (dy != 0)
-					{
-						if (!push(other, 0, e->dy * pushPower))
-						{
-							e->y = other->y;
-
-							if (e->dy > 0)
-							{
-								e->y -= e->h;
-							}
-							else
-							{
-								e->y += other->h;
-							}
-						}
-					}
-
-					self = oldSelf;
-
-					addToQuadtree(other, &stage.quadtree);
-				}
 
 				if (other->flags & EF_SOLID)
 				{
@@ -342,19 +294,6 @@ static void moveToEntities(Entity *e, float dx, float dy)
 			}
 		}
 	}
-}
-
-static int canPush(Entity *e, Entity *other)
-{
-	if (e->flags & EF_SOLID || other->flags & EF_SOLID)
-	{
-		if (e->flags & EF_PUSH && other->flags & EF_PUSHABLE)
-		{
-			return 1;
-		}
-	}
-
-	return 0;
 }
 
 void dropToFloor(void)
