@@ -46,7 +46,7 @@ void initGraphics(void)
 void prepareScene(void)
 {
 	SDL_SetRenderTarget(app.renderer, app.backBuffer);
-	SDL_SetRenderDrawColor(app.renderer, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(app.renderer, 93, 148, 251, 255);
 	SDL_RenderClear(app.renderer);
 }
 
