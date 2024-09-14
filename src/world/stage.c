@@ -479,34 +479,34 @@ static void drawHud(void)
 
 	drawRect(0, 0, SCREEN_WIDTH, 30, 0, 0, 0, 192);
 
-	drawText(10, 0, 32, TEXT_LEFT, app.colors.white, "Stage: %03d", stage.num);
+	drawText(10, 0, 32, TEXT_LEFT, app.colors.white, "Nivell: %03d", stage.num);
 
 	if (numTips > 0)
 	{
 		blitAtlasImage(tipsPrompt, 135, 16, 1, SDL_FLIP_NONE);
 	}
 
-	drawText(512, 0, 32, TEXT_CENTER, getColorForItems(stage.coins, stage.totalCoins), "Coins: %d / %d", stage.coins, stage.totalCoins);
+	drawText(512, 0, 32, TEXT_CENTER, getColorForItems(stage.coins, stage.totalCoins), "Raims: %d / %d", stage.coins, stage.totalCoins);
 
-	drawText(768, 0, 32, TEXT_CENTER, getColorForItems(stage.items, stage.totalItems), "Items: %d / %d", stage.items, stage.totalItems);
+	drawText(768, 0, 32, TEXT_CENTER, getColorForItems(stage.items, stage.totalItems), "Botelles: %d / %d", stage.items, stage.totalItems);
 
 	s = (stage.time / 60) % 60;
 	m = stage.time / 3600;
 
 	if (m > 0 || s > 10 || stage.time % 30 < 15)
 	{
-		drawText(SCREEN_WIDTH - 10, 0, 32, TEXT_RIGHT, app.colors.white, "Time: %02d:%02d", m, s);
+		drawText(SCREEN_WIDTH - 10, 0, 32, TEXT_RIGHT, app.colors.white, "Temps: %02d:%02d", m, s);
 	}
 	else
 	{
-		drawText(SCREEN_WIDTH - 10, 0, 32, TEXT_RIGHT, app.colors.red, "Time: %02d:%02d", m, s);
+		drawText(SCREEN_WIDTH - 10, 0, 32, TEXT_RIGHT, app.colors.red, "Temps: %02d:%02d", m, s);
 	}
 
 	if (stage.status == SS_FAILED)
 	{
 		drawRect(0, SCREEN_HEIGHT - 30, SCREEN_WIDTH, 30, 0, 0, 0, 192);
 
-		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 32, 32, TEXT_CENTER, app.colors.white, "Press [%s] to retry", SDL_GetScancodeName(app.config.keyControls[CONTROL_RESTART]));
+		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 32, 32, TEXT_CENTER, app.colors.white, "Prem [%s] per reintentar", SDL_GetScancodeName(app.config.keyControls[CONTROL_RESTART]));
 	}
 }
 
@@ -516,7 +516,7 @@ static SDL_Color getColorForItems(int current, int total)
 	{
 		if (current == total)
 		{
-			return app.colors.green;
+			return app.colors.orange;
 		}
 
 		return app.colors.white;

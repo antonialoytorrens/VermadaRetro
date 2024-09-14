@@ -167,14 +167,14 @@ static void drawStages(void)
 
 	oldDraw();
 
-	drawText(SCREEN_WIDTH / 2, 25, 96, TEXT_CENTER, app.colors.white, "SELECT STAGE");
+	drawText(SCREEN_WIDTH / 2, 25, 96, TEXT_CENTER, app.colors.white, "TRIA NIVELL");
 
 	drawRect(r.x, r.y, r.w, r.h, 0, 0, 0, 255);
 	drawOutlineRect(r.x, r.y, r.w, r.h, 255, 255, 255, 255);
 
-	drawText(r.x + 85, y, 48, TEXT_LEFT, app.colors.white, "Stage");
-	drawText(r.x + (r.w / 2) - 48, y, 48, TEXT_LEFT, app.colors.white, "Coins");
-	drawText(r.x + r.w - 64, y, 48, TEXT_RIGHT, app.colors.white, "Items");
+	drawText(r.x + 85, y, 48, TEXT_LEFT, app.colors.white, "Nivell");
+	drawText(r.x + (r.w / 2) - 48, y, 48, TEXT_LEFT, app.colors.white, "Raims");
+	drawText(r.x + r.w - 64, y, 48, TEXT_RIGHT, app.colors.white, "Botelles");
 
 	y += 56;
 
@@ -238,15 +238,15 @@ static void drawStages(void)
 		}
 	}
 
-	drawText(r.x + 25, r.y + r.h - 40, 32, TEXT_LEFT, app.colors.white, "[Escape] Back");
+	drawText(r.x + 25, r.y + r.h - 40, 32, TEXT_LEFT, app.colors.white, "[Esc] Enrere");
 
 	if (start <= game.stagesComplete + 1)
 	{
-		drawText(r.x + r.w - 25, r.y + r.h - 40, 32, TEXT_RIGHT, app.colors.white, "[Return] Start");
+		drawText(r.x + r.w - 25, r.y + r.h - 40, 32, TEXT_RIGHT, app.colors.white, "[Retorn] Iniciar");
 	}
 	else
 	{
-		drawText(r.x + r.w - 25, r.y + r.h - 40, 32, TEXT_RIGHT, app.colors.lightGrey, "Stage is locked");
+		drawText(r.x + r.w - 25, r.y + r.h - 40, 32, TEXT_RIGHT, app.colors.lightGrey, "Nivell bloquejat");
 	}
 }
 

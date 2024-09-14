@@ -499,7 +499,7 @@ static void drawInfo(void)
 
 	drawRect(0, 0, SCREEN_WIDTH, 30, 0, 0, 0, 192);
 
-	drawText(10, 0, 32, TEXT_LEFT, app.colors.white, "Stage: %d", stage.num);
+	drawText(10, 0, 32, TEXT_LEFT, app.colors.white, "Nivell: %d", stage.num);
 
 	drawText(310, 0, 32, TEXT_LEFT, app.colors.white, "Pos: %d,%d", x, y);
 
