@@ -45,7 +45,6 @@ static void setWindowSizeWidgetValue(Widget *w);
 static Widget *leftWidget;
 static Widget *rightWidget;
 static Widget *jumpWidget;
-static Widget *useWidget;
 static Widget *restartWidget;
 static Widget *pauseWidget;
 static void (*oldDraw)(void);
@@ -85,7 +84,6 @@ void initOptions(void (*done)(void))
 	leftWidget = getWidget("left", "controls");
 	rightWidget = getWidget("right", "controls");
 	jumpWidget = getWidget("jump", "controls");
-	useWidget = getWidget("use", "controls");
 	restartWidget = getWidget("restart", "controls");
 	pauseWidget = getWidget("pause", "controls");
 
@@ -156,19 +154,19 @@ static void draw(void)
 			drawWidgets("controls");
 			if (!app.awaitingWidgetInput)
 			{
-				drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 75, 32, TEXT_CENTER, app.colors.yellow, "[Return] Change control :: [Backspace] Clear control");
+				drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 225, 32, TEXT_CENTER, app.colors.yellow, "[Retorn] Canviar control :: [Retroces] Netejar control");
 			}
 			else
 			{
-				drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 75, 32, TEXT_CENTER, app.colors.yellow, "Press key or joypad button to use");
+				drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 225, 32, TEXT_CENTER, app.colors.yellow, "Prem una tecla del computador o del comandament per emprar");
 			}
 			break;
 
 		default:
-			drawText(SCREEN_WIDTH / 2, 25, 96, TEXT_CENTER, app.colors.white, "OPTIONS");
+			drawText(SCREEN_WIDTH / 2, 25, 96, TEXT_CENTER, app.colors.white, "OPCIONS");
 			drawWidgetFrame();
 			drawWidgets("options");
-			drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 75, 32, TEXT_CENTER, app.colors.yellow, "Restart the game to apply resolution and fullscreen options.");
+			drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 125, 32, TEXT_CENTER, app.colors.yellow, "Reinicia el joc per aplicar els canvis de mida de pantalla.");
 			break;
 	}
 }

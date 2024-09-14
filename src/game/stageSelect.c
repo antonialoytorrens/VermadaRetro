@@ -193,7 +193,7 @@ static void drawStages(void)
 			}
 			else if (s->stageNum == start)
 			{
-				c = app.colors.green;
+				c = app.colors.orange;
 			}
 
 			drawText(r.x + 85, y, 48, TEXT_LEFT, c, "%03d", s->stageNum);
@@ -226,11 +226,11 @@ static void drawStages(void)
 
 			if (s->stageNum == start)
 			{
-				drawRect(r.x + 25, y + 12, 20, 20, 0, 255, 0, 192);
+				drawRect(r.x + 25, y + 12, 20, 20, 255, 128, 0, 192);
 
 				if (SDL_GetTicks() % 1000 < 500)
 				{
-					drawRect(r.x + 25, y + 12, 20, 20, 0, 255, 0, 255);
+					drawRect(r.x + 25, y + 12, 20, 20, 255, 128, 0, 255);
 				}
 			}
 
