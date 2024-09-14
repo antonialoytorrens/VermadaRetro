@@ -28,7 +28,7 @@
 		"name" : "restart",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 250,
+		"y" : 300,
 		"text" : "Restart"
 	},
 	{
@@ -36,7 +36,7 @@
 		"name" : "pause",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 300,
+		"y" : 350,
 		"text" : "Pause"
 	},
 	{
@@ -44,7 +44,7 @@
 		"name" : "back",
 		"groupName" : "controls",
 		"x" : 250,
-		"y" : 350,
+		"y" : 400,
 		"text" : "Back"
 	}
 ]

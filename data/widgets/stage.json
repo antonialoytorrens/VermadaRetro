@@ -5,7 +5,7 @@
 		"groupName" : "stage",
 		"x" : -1,
 		"y" : 200,
-		"text" : "Resume"
+		"text" : "Continuar"
 	},
 	{
 		"type" : "WT_BUTTON",
@@ -13,7 +13,7 @@
 		"groupName" : "stage",
 		"x" : -1,
 		"y" : 275,
-		"text" : "Restart"
+		"text" : "Reiniciar"
 	},
 	{
 		"type" : "WT_BUTTON",
@@ -21,7 +21,7 @@
 		"groupName" : "stage",
 		"x" : -1,
 		"y" : 350,
-		"text" : "Options"
+		"text" : "Opcions"
 	},
 	{
 		"type" : "WT_BUTTON",
@@ -29,6 +29,6 @@
 		"groupName" : "stage",
 		"x" : -1,
 		"y" : 425,
-		"text" : "Quit"
+		"text" : "Sortir"
 	}
 ]
