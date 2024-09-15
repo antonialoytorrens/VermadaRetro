@@ -104,9 +104,9 @@ void addCoinParticles(int x, int y)
 		p->life = 15 + rand() % 45;
 		p->weightless = 1;
 
-		p->color.r = 255;
-		p->color.g = 255;
-		p->color.b = rand() % 255;
+		p->color.r = 128 + rand() % 128;
+		p->color.g = rand() % 64;
+		p->color.b = 128 + rand() % 128;
 	}
 }
 
@@ -133,9 +133,9 @@ void addPowerupParticles(int x, int y)
 		p->life = 15 + rand() % 15;
 		p->weightless = 1;
 
-		p->color.r = 64 + rand() % 64;
-		p->color.g = 128 + rand() % 128;
-		p->color.b = 255;
+		p->color.r = 128 + rand() % 128;
+		p->color.g = rand() % 64;
+		p->color.b = 128 + rand() % 128;
 	}
 }
 

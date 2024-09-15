@@ -53,7 +53,7 @@ void initCoin(Entity *e)
 	e->die = die;
 
 	e->light.r = 255;
-	e->light.g = 255;
+	e->light.b = 255;
 	e->light.a = 64;
 
 	stage.totalCoins++;
