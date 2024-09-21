@@ -45,8 +45,7 @@ static void options(void);
 static void credits(void);
 static void quit(void);
 
-static AtlasImage *waterTexture;
-static AtlasImage *closetTexture;
+static AtlasImage *churchTexture;
 static Widget *startWidget;
 static Widget *optionsWidget;
 static Widget *creditsWidget;
@@ -55,8 +54,7 @@ static Widget *previousWidget;
 
 void initTitle(void)
 {
-	waterTexture = getAtlasImage("gfx/main/water.png", 1);
-	closetTexture = getAtlasImage("gfx/main/closet.png", 1);
+	churchTexture = getAtlasImage("gfx/main/church.png", 1);
 
 	startWidget = getWidget("start", "title");
 	startWidget->action = start;
@@ -81,7 +79,7 @@ void initTitle(void)
 
 	loadStage(0);
 
-	stage.player->atlasImage = getAtlasImage("gfx/entities/guyPlunger.png", 1);
+	stage.player->atlasImage = getAtlasImage("gfx/entities/girl.png", 1);
 
 	stage.player->tick = NULL;
 
@@ -124,8 +122,7 @@ static void draw(void)
 
 	if (previousWidget == NULL)
 	{
-		blitAtlasImage(waterTexture, (SCREEN_WIDTH / 2) - (waterTexture->rect.w / 2) - 25, 150, 1, SDL_FLIP_NONE);
-		blitAtlasImage(closetTexture, (SCREEN_WIDTH / 2) + (closetTexture->rect.w / 2) + 25, 150, 1, SDL_FLIP_NONE);
+		blitAtlasImage(churchTexture, (SCREEN_WIDTH / 2) + (churchTexture->rect.w / 2) + 25, 150, 1, SDL_FLIP_NONE);
 
 		drawWidgetFrame();
 	}
