@@ -53,7 +53,7 @@ void initPlayer(Entity *e)
 	e->typeName = "player";
 	e->data = p;
 	e->type = ET_PLAYER;
-	e->atlasImage = getAtlasImage("gfx/entities/guy.png", 1);
+	e->atlasImage = getAtlasImage("gfx/entities/girl.png", 1);
 	e->tick = tick;
 	e->die = die;
 	e->load = load;
