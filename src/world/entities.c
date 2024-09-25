@@ -50,7 +50,7 @@ void initEntities(cJSON *root)
 
 	loadEnts(cJSON_GetObjectItem(root, "entities"));
 
-	sparkleTexture = getAtlasImage("gfx/particles/light.png", 1);
+	sparkleTexture = getAtlasImage("gfx/particles/basic.png", 1);
 }
 
 void doEntities(void)
