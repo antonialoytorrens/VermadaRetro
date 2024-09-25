@@ -58,7 +58,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define MAX_KEYBOARD_KEYS   350
 #define MAX_MOUSE_BUTTONS   6
 
-#define NUM_ATLAS_BUCKETS 32
+#define NUM_ATLAS_BUCKETS 2
 
 #define EF_NONE            0
 #define EF_WEIGHTLESS      (2 << 0)
