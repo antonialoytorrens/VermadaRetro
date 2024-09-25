@@ -39,7 +39,7 @@ void initFinalToilet(Entity *e)
 	e->facing = 0;
 	e->type = ET_TOILET;
 	e->data = t;
-	e->atlasImage = getAtlasImage("gfx/entities/toilet.png", 1);
+	e->atlasImage = getAtlasImage("gfx/entities/church.png", 1);
 	e->w = e->atlasImage->rect.w;
 	e->h = e->atlasImage->rect.h;
 	e->flags = EF_NO_ENT_CLIP+EF_STATIC;

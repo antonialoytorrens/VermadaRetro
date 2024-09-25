@@ -52,23 +52,7 @@ void initToilet(Entity *e)
 	t = malloc(sizeof(Toilet));
 	memset(t, 0, sizeof(Toilet));
 
-	for (i = 0 ; i < 5 ; i++)
-	{
-		sprintf(filename, "gfx/entities/toiletEscape%d.png", i + 1);
-
-		escapeFrames[i] = getAtlasImage(filename, 1);
-	}
-
-	eruptFrames[0] = getAtlasImage("gfx/entities/toiletErupt1.png", 1);
-	eruptFrames[1] = getAtlasImage("gfx/entities/toiletErupt2.png", 1);
-
-	stinkFrames[0] = getAtlasImage("gfx/entities/toiletStink1.png", 1);
-	stinkFrames[1] = getAtlasImage("gfx/entities/toiletStink2.png", 1);
-
-	plungingFrames[0] = getAtlasImage("gfx/entities/toiletPlunging1.png", 1);
-	plungingFrames[1] = getAtlasImage("gfx/entities/toiletPlunging2.png", 1);
-
-	idleTexture = getAtlasImage("gfx/entities/toilet.png", 1);
+	idleTexture = getAtlasImage("gfx/entities/church.png", 1);
 
 	e->typeName = "toilet";
 	e->type = ET_TOILET;
