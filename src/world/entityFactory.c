@@ -22,9 +22,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../common.h"
 #include "entityFactory.h"
 #include "../json/cJSON.h"
-#include "../entities/decoration.h"
 #include "../entities/player.h"
-#include "../entities/roofSpikes.h"
 #include "../entities/item.h"
 #include "../entities/coin.h"
 #include "../entities/finalToilet.h"
@@ -49,11 +47,9 @@ void initEntityFactory(void)
 	addInitFunc("coin", initCoin);
 	addInitFunc("toilet", initToilet);
 	addInitFunc("spikes", initSpikes);
-	addInitFunc("roofSpikes", initRoofSpikes);
 	addInitFunc("item", initItem);
 	addInitFunc("platform", initPlatform);
 	addInitFunc("finalToilet", initFinalToilet);
-	addInitFunc("decoration", initDecoration);
 
 	entityId = 0;
 }
