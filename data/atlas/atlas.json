@@ -1,30 +1,30 @@
 [
 	{
 		"filename" : "gfx/entities/girl.png",
-		"x" : 106,
-		"y" : 96,
+		"x" : 108,
+		"y" : 95,
 		"w" : 20,
 		"h" : 32,
 		"rotated" : 0
 	},
 	{
 		"filename" : "gfx/entities/item01.png",
-		"x" : 93,
-		"y" : 100,
+		"x" : 26,
+		"y" : 88,
 		"w" : 12,
 		"h" : 28,
 		"rotated" : 0
 	},
 	{
 		"filename" : "gfx/entities/coin.png",
-		"x" : 473,
-		"y" : 348,
-		"w" : 24,
+		"x" : 7,
+		"y" : 92,
+		"w" : 18,
 		"h" : 24,
 		"rotated" : 0
 	},
 	{
-		"filename" : "gfx/tilesets/brick/0.png",
+		"filename" : "gfx/tilesets/brick.png",
 		"x" : 0,
 		"y" : 0,
 		"w" : 48,
@@ -32,15 +32,15 @@
 		"rotated" : 0
 	},
 	{
-		"filename" : "gfx/tilesets/brick/1.png",
+		"filename" : "gfx/tilesets/cloud.png",
 		"x" : 0,
 		"y" : 49,
 		"w" : 48,
-		"h" : 48,
+		"h" : 25,
 		"rotated" : 0
 	},
 	{
-		"filename" : "gfx/main/church.png",
+		"filename" : "gfx/entities/church.png",
 		"x" : 49,
 		"y" : 0,
 		"w" : 40,
@@ -50,30 +50,22 @@
 	{
 		"filename" : "gfx/entities/platform.png",
 		"x" : 0,
-		"y" : 118,
+		"y" : 117,
 		"w" : 92,
 		"h" : 10,
 		"rotated" : 0
 	},
 	{
 		"filename" : "gfx/entities/spikes.png",
-		"x" : 112,
+		"x" : 114,
 		"y" : 70,
 		"w" : 14,
 		"h" : 24,
 		"rotated" : 0
 	},
 	{
-		"filename" : "gfx/entities/roofSpikes.png",
-		"x" : 112,
-		"y" : 70,
-		"w" : 14,
-		"h" : 24,
-		"rotated" : 180
-	},
-	{
 		"filename" : "gfx/main/tips.png",
-		"x" : 392,
+		"x" : 107,
 		"y" : 74,
 		"w" : 16,
 		"h" : 16,
@@ -81,18 +73,26 @@
 	},
 	{
 		"filename" : "gfx/main/noTick.png",
-		"x" : 183,
-		"y" : 74,
+		"x" : 105,
+		"y" : 6,
 		"w" : 22,
 		"h" : 22,
 		"rotated" : 0
 	},
 	{
 		"filename" : "gfx/main/tick.png",
-		"x" : 206,
-		"y" : 74,
+		"x" : 105,
+		"y" : 29,
 		"w" : 22,
 		"h" : 22,
+		"rotated" : 0
+	},
+	{
+		"filename" : "gfx/particles/basic.png",
+		"x" : 0,
+		"y" : 89,
+		"w" : 7,
+		"h" : 7,
 		"rotated" : 0
 	}
 ]
