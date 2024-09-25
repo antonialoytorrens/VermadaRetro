@@ -109,7 +109,7 @@ void initStage(void)
 
 	initBackgroundData();
 
-	backgroundTile = getAtlasImage("gfx/tilesets/brick/0.png", 1);
+	backgroundTile = getAtlasImage("gfx/tilesets/cloud.png", 1);
 
 	tipsPrompt = getAtlasImage("gfx/main/tips.png", 1);
 
