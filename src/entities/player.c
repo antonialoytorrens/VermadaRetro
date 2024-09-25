@@ -101,7 +101,7 @@ static void tick(void)
 
 		if (isControl(CONTROL_JUMP) && self->isOnGround)
 		{
-			self->dy = -20;
+			self->dy = -22;
 
 			playSound(SND_JUMP, CH_PLAYER);
 		}
@@ -113,6 +113,8 @@ static void die(void)
 	addDeathParticles(self->x, self->y);
 
 	playSound(SND_DEATH, CH_PLAYER);
+
+	stage.status = SS_FAILED;
 }
 
 static void load(cJSON *root)
