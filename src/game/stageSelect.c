@@ -38,20 +38,17 @@ extern Stage stage;
 static void logic(void);
 static void draw(void);
 static void back(void);
-static void drawArrows(void);
 static void drawStages(void);
 
 static void (*oldDraw)(void);
 static void (*returnFromStageSelect)(void);
 static int start;
-static AtlasImage *arrow;
 static AtlasImage *tick;
 static AtlasImage *noTick;
 static int scrollTimer;
 
 void initStageSelect(void (*done)(void))
 {
-	arrow = getAtlasImage("gfx/main/arrow.png", 1);
 	tick = getAtlasImage("gfx/main/tick.png", 1);
 	noTick = getAtlasImage("gfx/main/noTick.png", 1);
 
@@ -125,31 +122,6 @@ static void logic(void)
 static void draw(void)
 {
 	drawStages();
-
-	drawArrows();
-}
-
-static void drawArrows(void)
-{
-	SDL_SetTextureColorMod(arrow->texture, 64, 64, 64);
-
-	if (start > 0)
-	{
-		SDL_SetTextureColorMod(arrow->texture, 255, 255, 255);
-	}
-
-	blitAtlasImage(arrow, (SCREEN_WIDTH / 2) - 25, 560, 1, SDL_FLIP_NONE);
-
-	SDL_SetTextureColorMod(arrow->texture, 64, 64, 64);
-
-	if (start < game.numStages)
-	{
-		SDL_SetTextureColorMod(arrow->texture, 255, 255, 255);
-	}
-
-	blitAtlasImage(arrow, (SCREEN_WIDTH / 2) + 25, 560, 1, SDL_FLIP_VERTICAL);
-
-	SDL_SetTextureColorMod(arrow->texture, 255, 255, 255);
 }
 
 static void drawStages(void)
