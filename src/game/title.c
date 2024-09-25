@@ -54,7 +54,7 @@ static Widget *previousWidget;
 
 void initTitle(void)
 {
-	churchTexture = getAtlasImage("gfx/main/church.png", 1);
+	churchTexture = getAtlasImage("gfx/entities/church.png", 1);
 
 	startWidget = getWidget("start", "title");
 	startWidget->action = start;
