@@ -28,7 +28,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../world/map.h"
 #include "../system/widgets.h"
 #include "../game/game.h"
-#include "../game/stageSelect.h"
+#include "../system/controls.h"
 #include "../system/wipe.h"
 #include "../world/stage.h"
 #include "../system/text.h"
@@ -45,7 +45,6 @@ static void options(void);
 static void credits(void);
 static void quit(void);
 
-static AtlasImage *churchTexture;
 static Widget *startWidget;
 static Widget *optionsWidget;
 static Widget *creditsWidget;
@@ -54,7 +53,6 @@ static Widget *previousWidget;
 
 void initTitle(void)
 {
-	churchTexture = getAtlasImage("gfx/entities/church.png", 1);
 
 	startWidget = getWidget("start", "title");
 	startWidget->action = start;
@@ -122,7 +120,7 @@ static void draw(void)
 
 	if (previousWidget == NULL)
 	{
-		blitAtlasImage(churchTexture, (SCREEN_WIDTH / 2) + (churchTexture->rect.w / 2) + 25, 150, 1, SDL_FLIP_NONE);
+		drawText(SCREEN_WIDTH / 2, 110, 125, TEXT_CENTER, app.colors.orange, "SA VERMADA RETRO");
 
 		drawWidgetFrame();
 	}
@@ -157,9 +155,15 @@ static void start(void)
 {
 	showWidgets("title", 0);
 
-	initStageSelect(returnFrom);
+	destroyStage();
 
-	previousWidget = startWidget;
+	initStage();
+
+	stage.num = 60;  // Hardcoded since only one level is present in this game
+
+	loadStage(1);
+
+	loadRandomStageMusic(1);
 }
 
 static void options(void)
