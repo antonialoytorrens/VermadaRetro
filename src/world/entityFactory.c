@@ -25,6 +25,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../entities/player.h"
 #include "../entities/item.h"
 #include "../entities/coin.h"
+#include "../entities/finalToilet.h"
 #include "../entities/platform.h"
 #include "../entities/toilet.h"
 #include "../entities/spikes.h"
@@ -48,6 +49,7 @@ void initEntityFactory(void)
 	addInitFunc("spikes", initSpikes);
 	addInitFunc("item", initItem);
 	addInitFunc("platform", initPlatform);
+	addInitFunc("finalToilet", initFinalToilet);
 
 	entityId = 0;
 }

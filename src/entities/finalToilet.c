@@ -20,25 +20,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "../common.h"
-#include "toilet.h"
+#include "finalToilet.h"
 #include "../json/cJSON.h"
 #include "../system/atlas.h"
-#include "../world/particles.h"
-#include "../system/sound.h"
 
-extern Entity *self;
 extern Stage stage;
 
 static void touch(Entity *other);
 
-void initToilet(Entity *e)
+void initFinalToilet(Entity *e)
 {
 	Toilet *t;
 
 	t = malloc(sizeof(Toilet));
 	memset(t, 0, sizeof(Toilet));
 
-	e->typeName = "toilet";
+	e->typeName = "finalToilet";
+	e->facing = 0;
 	e->type = ET_TOILET;
 	e->data = t;
 	e->atlasImage = getAtlasImage("gfx/entities/church.png", 1);
@@ -52,11 +50,7 @@ static void touch(Entity *other)
 {
 	if (other != NULL && other->type == ET_PLAYER)
 	{
-		addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
-
-		playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
-
-		stage.status = SS_COMPLETE;
+		stage.status = SS_GAME_COMPLETE;
 	}
 }
 
