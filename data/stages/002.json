@@ -1,0 +1,15 @@
+{
+	"timeLimit":	0,
+	"entities":	[{
+			"type":	"player",
+			"x":	0,
+			"y":	0,
+			"facing":	"right"
+		}, {
+			"type":	"finalToilet",
+			"x":	0,
+			"y":	0
+		}],
+	"tips":	[],
+	"map":	""
+}
