@@ -50,13 +50,30 @@ void initToilet(Entity *e)
 
 static void touch(Entity *other)
 {
-	if (other != NULL && other->type == ET_PLAYER)
+	Toilet *t;
+
+	if (other != NULL)
 	{
-		addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+		t = (Toilet *)self->data;
 
-		playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
+		if (other->type == ET_PLAYER)
+		{
+			t->animTimer = FPS;
 
-		stage.status = SS_COMPLETE;
+			other->health = 0;
+
+			/* just remove player */
+			other->die = NULL;
+
+			stage.status = SS_COMPLETE;
+
+			stage.nextStageTimer = FPS * 3;
+
+			addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+
+			playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
+
+			stage.status = SS_COMPLETE;
+		}
 	}
 }
-
