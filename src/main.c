@@ -104,7 +104,7 @@ static void handleCommandLine(int argc, char *argv[])
 
 			loadStage(1);
 
-			loadStageMusic();
+			loadMusic("music/puzzle-1-b.mp3");
 		}
 		else if (strcmp(argv[i], "-ending") == 0)
 		{

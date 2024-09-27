@@ -20,7 +20,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 void destroySounds(void);
-void loadStageMusic(void);
 void resumeSound(void);
 void pauseSound(void);
 void playPositionalSound(int id, int channel, int srcX, int srcY, int destX, int destY);
