@@ -31,7 +31,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../system/widgets.h"
 #include "../game/game.h"
 #include "../system/sound.h"
-#include "../game/meta.h"
 #include "../system/wipe.h"
 #include "../world/particles.h"
 #include "../game/title.h"
@@ -68,7 +67,6 @@ static void resume(void);
 static void restart(void);
 static void options(void);
 static void quit(void);
-static void updateStageProgress(void);
 static SDL_Color getColorForItems(int current, int total);
 
 static cJSON *stageJSON;
@@ -208,7 +206,6 @@ static void doGame(void)
 			}
 			else if (stage.nextStageTimer < 0)
 			{
-				updateStageProgress();
 
 				nextStage(stage.num + 1);
 			}
@@ -230,18 +227,6 @@ static void doGame(void)
 	{
 		doTips();
 	}
-}
-
-static void updateStageProgress(void)
-{
-	StageMeta *meta;
-
-	meta = getStageMeta(stage.num);
-
-	game.stagesComplete = MAX(game.stagesComplete, stage.num);
-
-	meta->itemsFound = MAX(stage.items, meta->itemsFound);
-	meta->coinsFound = MAX(stage.coins, meta->coinsFound);
 }
 
 static void doMenu(void)
@@ -574,10 +559,6 @@ static void nextStage(int num)
 	if (sameStage)
 	{
 		showTips = 0;
-	}
-	else if (rand() % 4 == 0)
-	{
-		loadRandomStageMusic(0);
 	}
 }
 

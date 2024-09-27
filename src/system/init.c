@@ -30,7 +30,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../system/widgets.h"
 #include "../game/game.h"
 #include "../system/sound.h"
-#include "../game/meta.h"
 #include "../world/particles.h"
 #include "../system/textures.h"
 #include "../system/text.h"
@@ -122,8 +121,7 @@ void initGame(void)
 		initJoypad,
 		initWidgets,
 		initEntityFactory,
-		initParticles,
-		initStageMetaData
+		initParticles
 	};
 
 	srand(time(NULL));

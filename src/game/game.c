@@ -23,7 +23,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "game.h"
 #include "../json/cJSON.h"
 #include "../system/lookup.h"
-#include "../game/meta.h"
 #include "../system/util.h"
 #include "../system/io.h"
 
