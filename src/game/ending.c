@@ -24,6 +24,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../game/credits.h"
 #include "../game/title.h"
 #include "../world/map.h"
+#include "../world/camera.h"
 #include "../system/wipe.h"
 #include "../world/stage.h"
 #include "../system/text.h"
@@ -35,10 +36,8 @@ extern Stage stage;
 
 static void logic(void);
 static void draw(void);
-static void drawDarkness(void);
 static void returnFromCredits(void);
 
-static AtlasImage *darknessTexture;
 static int timeout;
 
 void initEnding(void)
@@ -54,8 +53,6 @@ void initEnding(void)
 	stage.player->tick = NULL;
 
 	initWipe(WIPE_FADE);
-
-	darknessTexture = getAtlasImage("gfx/particles/darkness.png", 1);
 
 	timeout = FPS * 5;
 
@@ -82,35 +79,25 @@ static void draw(void)
 {
 	app.dev.drawing = 0;
 
+	// TODO: Force background draw
+	// drawBackground();
+
 	drawEntities(1);
 
 	drawMap();
 
-	drawDarkness();
-
 	drawEntities(0);
+
+	// Fix camera to the player in order to prevent random map location focus
+	doCamera();
 
 	if (timeout > 0)
 	{
-		drawText(SCREEN_WIDTH / 2, 50, 32, TEXT_CENTER, app.colors.white, "Well, that answers the question of whether Walter was hallucinating.");
-		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT - 64, 32, TEXT_CENTER, app.colors.white, "Thanks for playing.");
+		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 50, 50, TEXT_CENTER, app.colors.white, "Enhorabona, ho has aconseguit!");
+		drawText(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 - 15, 50, TEXT_CENTER, app.colors.white, "Visca Binissalem, i visca Sa Vermada!");
 	}
 
 	drawWipe();
-}
-
-static void drawDarkness(void)
-{
-	SDL_Rect dest;
-
-	dest.w = 550;
-	dest.h = 350;
-	dest.x = (SCREEN_WIDTH - dest.w) / 2;
-	dest.y = (SCREEN_HEIGHT - dest.h) / 2;
-
-	dest.y += 150;
-
-	SDL_RenderCopyEx(app.renderer, darknessTexture->texture, &darknessTexture->rect, &dest, 0, NULL, SDL_FLIP_NONE);
 }
 
 static void returnFromCredits(void)
