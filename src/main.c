@@ -104,7 +104,7 @@ static void handleCommandLine(int argc, char *argv[])
 
 			loadStage(1);
 
-			loadRandomStageMusic(1);
+			loadStageMusic();
 		}
 		else if (strcmp(argv[i], "-ending") == 0)
 		{

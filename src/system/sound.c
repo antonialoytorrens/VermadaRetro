@@ -30,10 +30,6 @@ static void channelDone(int c);
 
 static Mix_Chunk *sounds[SND_MAX];
 static Mix_Music *music;
-static char *musicFilenames[] = {
-	"music/contemplation.ogg", "music/puzzle-1-a.mp3", "music/puzzle-1-b.mp3"
-};
-static int lastRandomMusic;
 static int channelVolumes[CH_MAX];
 
 void initSounds(void)
@@ -43,8 +39,6 @@ void initSounds(void)
 	memset(sounds, 0, sizeof(Mix_Chunk*) * SND_MAX);
 
 	music = NULL;
-
-	lastRandomMusic = -1;
 
 	loadSounds();
 
@@ -129,39 +123,18 @@ static Mix_Chunk *loadSound(char *filename)
 
 static void loadSounds(void)
 {
-	sounds[SND_JUMP] = loadSound("sound/331381__qubodup__public-domain-jump-sound.ogg");
-	sounds[SND_COIN] = loadSound("sound/135936__bradwesson__collectcoin.ogg");
-	sounds[SND_FINISH] = loadSound("sound/108413__kyle1katarn__toilet.ogg");
-	sounds[SND_CLOCK] = loadSound("sound/clock.ogg");
-	sounds[SND_NUDGE] = loadSound("sound/nudge.ogg");
-	sounds[SND_WIPE] = loadSound("sound/wipe.ogg");
-	sounds[SND_EXPIRED] = loadSound("sound/expired.ogg");
-	sounds[SND_NEGATIVE] = loadSound("sound/negative.ogg");
-	sounds[SND_FANFARE] = loadSound("sound/449069__ricniclas__fanfare.ogg");
-	sounds[SND_DEATH] = loadSound("sound/fail.ogg");
-	sounds[SND_ITEM] = loadSound("sound/item.ogg");
-	sounds[SND_TIP] = loadSound("sound/tip.ogg");
-}
-
-void loadRandomStageMusic(int forceRandom)
-{
-	int r;
-
-	if (forceRandom)
-	{
-		lastRandomMusic = -1;
-	}
-
-	r = rand() % (sizeof(musicFilenames) / sizeof(char*));
-
-	if (r != lastRandomMusic)
-	{
-		lastRandomMusic = r;
-
-		loadMusic(musicFilenames[r]);
-
-		playMusic(1);
-	}
+	sounds[SND_JUMP] = loadSound("sound/331381__qubodup__public-domain-jump-sound.mp3");
+	sounds[SND_COIN] = loadSound("sound/135936__bradwesson__collectcoin.mp3");
+	sounds[SND_FINISH] = loadSound("sound/108413__kyle1katarn__toilet.mp3");
+	sounds[SND_CLOCK] = loadSound("sound/clock.mp3");
+	sounds[SND_NUDGE] = loadSound("sound/nudge.mp3");
+	sounds[SND_WIPE] = loadSound("sound/wipe.mp3");
+	sounds[SND_EXPIRED] = loadSound("sound/expired.mp3");
+	sounds[SND_NEGATIVE] = loadSound("sound/negative.mp3");
+	sounds[SND_FANFARE] = loadSound("sound/449069__ricniclas__fanfare.mp3");
+	sounds[SND_DEATH] = loadSound("sound/fail.mp3");
+	sounds[SND_ITEM] = loadSound("sound/item.mp3");
+	sounds[SND_TIP] = loadSound("sound/tip.mp3");
 }
 
 void destroySounds(void)

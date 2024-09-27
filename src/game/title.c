@@ -87,7 +87,7 @@ void initTitle(void)
 
 	initWipe(WIPE_FADE);
 
-	loadMusic("music/Meadow Thoughts.ogg");
+	loadMusic("music/puzzle-1-b.mp3");
 
 	playMusic(1);
 
@@ -131,7 +131,7 @@ static void draw(void)
 	{
 		drawText(10, SCREEN_HEIGHT - 65, 32, TEXT_LEFT, app.colors.white, "Copyright Parallel Realities, 2019-2020");
 		drawText(10, SCREEN_HEIGHT - 35, 32, TEXT_LEFT, app.colors.white, "Copyright Antoni Aloy Torrens, 2024");
-		drawText(SCREEN_WIDTH - 10, SCREEN_HEIGHT - 35, 32, TEXT_RIGHT, app.colors.white, "Version %.1f.%d", VERSION, REVISION);
+		drawText(SCREEN_WIDTH - 10, SCREEN_HEIGHT - 35, 32, TEXT_RIGHT, app.colors.white, "v%.1f.%d", VERSION, REVISION);
 	}
 
 	drawWipe();
@@ -159,11 +159,9 @@ static void start(void)
 
 	initStage();
 
-	stage.num = 60;  // Hardcoded since only one level is present in this game
+	stage.num = 1;  // Hardcoded since only one level is present in this game
 
 	loadStage(1);
-
-	loadRandomStageMusic(1);
 }
 
 static void options(void)
