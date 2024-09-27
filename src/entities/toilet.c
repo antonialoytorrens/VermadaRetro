@@ -27,181 +27,36 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../system/sound.h"
 
 extern Entity *self;
-extern Game game;
 extern Stage stage;
 
-static void erupt(void);
-static void idle(void);
-static void escape(void);
 static void touch(Entity *other);
-static void load(cJSON *root);
-static void save(cJSON *root);
-
-static AtlasImage *idleTexture;
-static AtlasImage *eruptFrames[2];
-static AtlasImage *escapeFrames[5];
-static AtlasImage *stinkFrames[2];
-static AtlasImage *plungingFrames[2];
 
 void initToilet(Entity *e)
 {
 	Toilet *t;
-	char filename[MAX_FILENAME_LENGTH];
-	int i;
 
 	t = malloc(sizeof(Toilet));
 	memset(t, 0, sizeof(Toilet));
 
-	idleTexture = getAtlasImage("gfx/entities/church.png", 1);
-
 	e->typeName = "toilet";
 	e->type = ET_TOILET;
 	e->data = t;
-	e->atlasImage = idleTexture;
+	e->atlasImage = getAtlasImage("gfx/entities/church.png", 1);
 	e->w = e->atlasImage->rect.w;
 	e->h = e->atlasImage->rect.h;
 	e->flags = EF_NO_ENT_CLIP+EF_STATIC;
-	e->tick = idle;
 	e->touch = touch;
-
-	e->load = load;
-	e->save = save;
-}
-
-static void idle(void)
-{
-	if (stage.time / 60 == 0)
-	{
-		self->atlasImage = eruptFrames[0];
-
-		self->tick = erupt;
-
-		self->touch = NULL;
-	}
-}
-
-static void stink(void)
-{
-	Toilet *t;
-
-	t = (Toilet*)self->data;
-
-	t->animTimer++;
-
-	if (t->animTimer % 30 == 0)
-	{
-		if (++t->frameNum > 1)
-		{
-			t->frameNum = 0;
-		}
-	}
-
-	self->atlasImage = stinkFrames[t->frameNum];
-}
-
-static void erupt(void)
-{
-	Toilet *t;
-
-	t = (Toilet*)self->data;
-
-	t->animTimer++;
-
-	if (t->animTimer % 30 == 0)
-	{
-		if (++t->frameNum > 1)
-		{
-			t->frameNum = 0;
-		}
-
-		self->atlasImage = eruptFrames[t->frameNum];
-	}
-}
-
-static void escape(void)
-{
-	Toilet *t;
-
-	t = (Toilet*)self->data;
-
-	if (--t->animTimer == 0)
-	{
-		t->animTimer = 8;
-
-		t->frameNum++;
-
-		if (t->frameNum < 5)
-		{
-			self->atlasImage = escapeFrames[t->frameNum];
-		}
-		else
-		{
-			self->atlasImage = idleTexture;
-		}
-	}
 }
 
 static void touch(Entity *other)
 {
-	Toilet *t;
-
-	if (other != NULL)
+	if (other != NULL && other->type == ET_PLAYER)
 	{
-		t = (Toilet*)self->data;
+		addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
 
-		if (other->type == ET_PLAYER)
-		{
-			addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+		playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
 
-			self->tick = escape;
-
-			self->atlasImage = escapeFrames[0];
-
-			t->animTimer = FPS;
-
-			other->health = 0;
-
-			/* just remove player */
-			other->die = NULL;
-
-			stage.status = SS_COMPLETE;
-
-			stage.nextStageTimer = FPS * 3;
-
-			playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
-		}
-	}
-}
-
-static void load(cJSON *root)
-{
-	Toilet *t;
-
-	t = (Toilet*)self->data;
-
-	self->facing = strcmp(cJSON_GetObjectItem(root, "facing")->valuestring, "left") == 0 ? 0 : 1;
-
-	if (cJSON_GetObjectItem(root, "requiresPlunger"))
-	{
-		t->requiresPlunger = FPS * 2;
-
-		self->atlasImage = stinkFrames[0];
-
-		self->tick = stink;
-	}
-}
-
-static void save(cJSON *root)
-{
-	Toilet *t;
-
-	t = (Toilet*)self->data;
-
-	cJSON_AddStringToObject(root, "facing", self->facing == 0 ? "left" : "right");
-
-	if (t->requiresPlunger)
-	{
-		cJSON_AddNumberToObject(root, "requiresPlunger", 1);
+		stage.status = SS_GAME_COMPLETE;
 	}
 }
 
