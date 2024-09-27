@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "../common.h"
-#include "finalToilet.h"
+#include "finalChurch.h"
 #include "../json/cJSON.h"
 #include "../system/atlas.h"
 
@@ -28,16 +28,16 @@ extern Stage stage;
 
 static void touch(Entity *other);
 
-void initFinalToilet(Entity *e)
+void initFinalChurch(Entity *e)
 {
-	Toilet *t;
+	Church *t;
 
-	t = malloc(sizeof(Toilet));
-	memset(t, 0, sizeof(Toilet));
+	t = malloc(sizeof(Church));
+	memset(t, 0, sizeof(Church));
 
-	e->typeName = "finalToilet";
+	e->typeName = "finalChurch";
 	e->facing = 0;
-	e->type = ET_TOILET;
+	e->type = ET_CHURCH;
 	e->data = t;
 	e->atlasImage = getAtlasImage("gfx/entities/church.png", 1);
 	e->w = e->atlasImage->rect.w;

@@ -23,7 +23,7 @@ void destroyParticles(void);
 void addSlimeBurstParticles(int x, int y);
 void addWaterBurstParticles(int x, int y);
 void addDeathParticles(int x, int y);
-void addToiletSplashParticles(int x, int y);
+void addChurchSplashParticles(int x, int y);
 void addPowerupParticles(int x, int y);
 void addCoinParticles(int x, int y);
 void drawParticles(void);

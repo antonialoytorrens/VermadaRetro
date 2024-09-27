@@ -25,9 +25,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #include "../entities/player.h"
 #include "../entities/item.h"
 #include "../entities/coin.h"
-#include "../entities/finalToilet.h"
+#include "../entities/finalChurch.h"
 #include "../entities/platform.h"
-#include "../entities/toilet.h"
+#include "../entities/church.h"
 #include "../entities/spikes.h"
 
 extern Entity *self;
@@ -45,11 +45,11 @@ void initEntityFactory(void)
 
 	addInitFunc("player", initPlayer);
 	addInitFunc("coin", initCoin);
-	addInitFunc("toilet", initToilet);
+	addInitFunc("church", initChurch);
 	addInitFunc("spikes", initSpikes);
 	addInitFunc("item", initItem);
 	addInitFunc("platform", initPlatform);
-	addInitFunc("finalToilet", initFinalToilet);
+	addInitFunc("finalChurch", initFinalChurch);
 
 	entityId = 0;
 }

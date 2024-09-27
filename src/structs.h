@@ -93,7 +93,7 @@ typedef struct {
 	int animTimer;
 	int requiresPlunger;
 	int frameNum;
-} Toilet;
+} Church;
 
 typedef struct {
 	float sx;

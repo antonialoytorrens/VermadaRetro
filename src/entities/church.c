@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "../common.h"
-#include "toilet.h"
+#include "church.h"
 #include "../json/cJSON.h"
 #include "../system/atlas.h"
 #include "../world/particles.h"
@@ -31,15 +31,15 @@ extern Stage stage;
 
 static void touch(Entity *other);
 
-void initToilet(Entity *e)
+void initChurch(Entity *e)
 {
-	Toilet *t;
+	Church *t;
 
-	t = malloc(sizeof(Toilet));
-	memset(t, 0, sizeof(Toilet));
+	t = malloc(sizeof(Church));
+	memset(t, 0, sizeof(Church));
 
-	e->typeName = "toilet";
-	e->type = ET_TOILET;
+	e->typeName = "church";
+	e->type = ET_CHURCH;
 	e->data = t;
 	e->atlasImage = getAtlasImage("gfx/entities/church.png", 1);
 	e->w = e->atlasImage->rect.w;
@@ -50,11 +50,11 @@ void initToilet(Entity *e)
 
 static void touch(Entity *other)
 {
-	Toilet *t;
+	Church *t;
 
 	if (other != NULL)
 	{
-		t = (Toilet *)self->data;
+		t = (Church *)self->data;
 
 		if (other->type == ET_PLAYER)
 		{
@@ -69,7 +69,7 @@ static void touch(Entity *other)
 
 			stage.nextStageTimer = FPS * 3;
 
-			addToiletSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+			addChurchSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
 
 			playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
 

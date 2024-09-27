@@ -19,6 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 
+#ifdef __EMSCRIPTEN__
+#include <SDL2/SDL_mixer.h>
+#endif
+
 #include "../common.h"
 #include "title.h"
 #include "../system/atlas.h"
@@ -184,6 +188,10 @@ static void credits(void)
 
 static void quit(void)
 {
+	#ifdef __EMSCRIPTEN__
+		Mix_HaltMusic();
+	#endif
+
 	exit(0);
 }
 

@@ -140,7 +140,7 @@ void addPowerupParticles(int x, int y)
 	}
 }
 
-void addToiletSplashParticles(int x, int y)
+void addChurchSplashParticles(int x, int y)
 {
 	Particle *p;
 	int i;

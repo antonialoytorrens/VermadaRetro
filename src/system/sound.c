@@ -125,7 +125,7 @@ static void loadSounds(void)
 {
 	sounds[SND_JUMP] = loadSound("sound/331381__qubodup__public-domain-jump-sound.mp3");
 	sounds[SND_COIN] = loadSound("sound/135936__bradwesson__collectcoin.mp3");
-	sounds[SND_FINISH] = loadSound("sound/108413__kyle1katarn__toilet.mp3");
+	sounds[SND_FINISH] = loadSound("sound/108413__kyle1katarn__church.mp3");
 	sounds[SND_CLOCK] = loadSound("sound/clock.mp3");
 	sounds[SND_NUDGE] = loadSound("sound/nudge.mp3");
 	sounds[SND_WIPE] = loadSound("sound/wipe.mp3");
