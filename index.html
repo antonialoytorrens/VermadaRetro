@@ -24,15 +24,15 @@
 		justify-content: center;
 	}
 	canvas {
-		overflow: auto;
-		width: 100vw;
-	}
-	@media screen and (min-width: 1400px) {
-		canvas {
-			height: 100vh;
-			width: auto;
-		}
-	}
+       overflow: auto;
+       width: 100vw;
+ }
+ @media screen and (min-width: 576px) {
+        canvas {
+            height: 100vh;
+            width: auto;
+        }
+ }
 	@keyframes page-loader { 
 		0% {transform: rotate(0deg); } 
 		100% { transform: rotate(360deg);}
