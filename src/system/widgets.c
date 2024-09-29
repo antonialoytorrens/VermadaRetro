@@ -51,22 +51,25 @@ void doWidgets(const char *groupName)
 
 	if (!app.awaitingWidgetInput)
 	{
-		if (app.keyboard[SDL_SCANCODE_UP] || isControl(CONTROL_UP))
+		if (app.keyboard[SDL_SCANCODE_UP] || app.keyboard[SDL_SCANCODE_W] || isControl(CONTROL_UP))
 		{
 			clearControl(CONTROL_UP);
 
 			app.keyboard[SDL_SCANCODE_UP] = 0;
+			app.keyboard[SDL_SCANCODE_W] = 0;
 
 			playSound(SND_TIP, CH_WIDGET);
 
 			findNextWidget(groupName, -1);
 		}
 
-		if (app.keyboard[SDL_SCANCODE_DOWN] || isControl(CONTROL_DOWN))
+		if (app.keyboard[SDL_SCANCODE_DOWN] || app.keyboard[SDL_SCANCODE_S] || isControl(CONTROL_DOWN))
 		{
 			clearControl(CONTROL_DOWN);
 
 			app.keyboard[SDL_SCANCODE_DOWN] = 0;
+
+			app.keyboard[SDL_SCANCODE_S] = 0;
 
 			playSound(SND_TIP, CH_WIDGET);
 
