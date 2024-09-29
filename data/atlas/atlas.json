@@ -51,7 +51,7 @@
 		"filename" : "gfx/entities/platform.png",
 		"x" : 0,
 		"y" : 117,
-		"w" : 40,
+		"w" : 48,
 		"h" : 10,
 		"rotated" : 0
 	},

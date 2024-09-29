@@ -383,18 +383,18 @@
 			"textureFilename":	"gfx/entities/item01.png"
 		}, {
 			"type":	"platform",
-			"x":	2384,
+			"x":	2392,
 			"y":	472,
-			"sx":	2384,
+			"sx":	2392,
 			"sy":	472,
-			"ex":	2484,
+			"ex":	2392,
 			"ey":	472,
-			"pause":	120,
+			"pause":	60,
 			"speed":	1,
-			"enabled":	1
+			"enabled":	0
 		}, {
 			"type":	"item",
-			"x":	2454,
+			"x":	2406,
 			"y":	408,
 			"textureFilename":	"gfx/entities/item01.png"
 		}, {
