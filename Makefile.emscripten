@@ -1,5 +1,4 @@
 PROG = saVermadaRetro
-MAP_PROG = mapEditor
 
 CC = ~/emsdk/upstream/emscripten/emcc --use-port=sdl2_image:formats=png --use-port=sdl2_mixer --use-port=sdl2_ttf
 LD = ~/emsdk/upstream/bin/wasm-ld
@@ -37,9 +36,6 @@ SRC_DIST_FILES = $(SHARED_FILES) src makefile* common.mk
 
 $(PROG): $(GAME_OBJS)
 	$(CC) -o $@ $(GAME_OBJS) $(LDFLAGS)
-
-$(MAP_PROG): $(MAP_OBJS)
-	$(CC) -o $@ $(MAP_OBJS) $(LDFLAGS)
 
 # prepare an archive for the program
 dist:
