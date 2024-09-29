@@ -20,8 +20,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 void destroyParticles(void);
-void addSlimeBurstParticles(int x, int y);
-void addWaterBurstParticles(int x, int y);
 void addDeathParticles(int x, int y);
 void addChurchSplashParticles(int x, int y);
 void addPowerupParticles(int x, int y);
