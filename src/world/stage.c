@@ -405,35 +405,37 @@ static void drawMenu(void)
 /* draws a parallax background */
 static void drawBackground(void)
 {
-	int x, y, x1, x2, y1, y2, mx, my, camX;
+    int x, y, x1, x2, y1, y2, mx, my, camX;
 
-	camX = stage.camera.x * 0.5f;
+    camX = stage.camera.x * 0.5f;
 
-	x1 = (camX % TILE_SIZE) * -1;
-	x2 = x1 + MAP_RENDER_WIDTH * TILE_SIZE + (x1 == 0 ? 0 : TILE_SIZE);
+    x1 = (camX % TILE_SIZE) * -1;
+    x2 = x1 + MAP_RENDER_WIDTH * TILE_SIZE + (x1 == 0 ? 0 : TILE_SIZE);
 
-	y1 = (stage.camera.y % TILE_SIZE) * -1;
-	y2 = y1 + MAP_RENDER_HEIGHT * TILE_SIZE + (y1 == 0 ? 0 : TILE_SIZE);
+    y1 = (stage.camera.y % TILE_SIZE) * -1;
+    y2 = y1 + MAP_RENDER_HEIGHT * TILE_SIZE + (y1 == 0 ? 0 : TILE_SIZE);
 
-	mx = camX / TILE_SIZE;
-	my = stage.camera.y / TILE_SIZE;
+    mx = camX / TILE_SIZE;
+    my = stage.camera.y / TILE_SIZE;
 
-	for (y = y1 ; y < y2 ; y += TILE_SIZE)
-	{
-		for (x = x1 ; x < x2 ; x += TILE_SIZE)
-		{
-			if (backgroundData[mx][my] == 1)
-			{
-				blitAtlasImage(backgroundTile, x, y, 0, SDL_FLIP_NONE);
-			}
+    for (y = y1 ; y < y2 ; y += TILE_SIZE)
+    {
+        if (y >= 50 && y <= 200) // Only draw clouds within this Y range
+        {
+            for (x = x1 ; x < x2 ; x += TILE_SIZE)
+            {
+                if (backgroundData[mx][my] == 1) // Assuming '1' means a cloud tile
+                {
+                    blitAtlasImage(backgroundTile, x, y, 0, SDL_FLIP_NONE);
+                }
 
-			mx++;
-		}
+                mx++;
+            }
+        }
 
-		mx = camX / TILE_SIZE;
-
-		my++;
-	}
+        mx = camX / TILE_SIZE;
+        my++;
+    }
 }
 
 static void drawTips(void)
