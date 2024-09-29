@@ -80,9 +80,9 @@ static void logic(void)
 
 	doEntities();
 
-	if (timeout <= 0 || app.keyboard[SDL_SCANCODE_ESCAPE])
+	if (timeout <= 0 || app.keyboard[SDL_SCANCODE_ESCAPE] || app.keyboard[SDL_SCANCODE_SPACE] || app.keyboard[SDL_SCANCODE_BACKSPACE])
 	{
-		app.keyboard[SDL_SCANCODE_ESCAPE] = 0;
+		app.keyboard[SDL_SCANCODE_ESCAPE] = app.keyboard[SDL_SCANCODE_SPACE] = app.keyboard[SDL_SCANCODE_BACKSPACE] = 0;
 
 		destroyCredits();
 
