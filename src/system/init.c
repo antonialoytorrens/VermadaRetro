@@ -73,7 +73,7 @@ void initSDL(void)
 
 	Mix_AllocateChannels(CH_MAX);
 
-	app.window = SDL_CreateWindow("Water Closet", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, app.config.winWidth, app.config.winHeight, windowFlags);
+	app.window = SDL_CreateWindow("Sa Vermada Retro", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, app.config.winWidth, app.config.winHeight, windowFlags);
 
 	SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "nearest");
 
