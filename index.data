@@ -1068,7 +1068,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 		"groupName" : "controls",
 		"x" : 250,
 		"y" : 150,
-		"text" : "Left"
+		"text" : "Esquerra"
 	},
 	{
 		"type" : "WT_INPUT",
@@ -1076,7 +1076,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 		"groupName" : "controls",
 		"x" : 250,
 		"y" : 200,
-		"text" : "Right"
+		"text" : "Dreta"
 	},
 	{
 		"type" : "WT_INPUT",
@@ -1084,7 +1084,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 		"groupName" : "controls",
 		"x" : 250,
 		"y" : 250,
-		"text" : "Jump"
+		"text" : "Saltar"
 	},
 	{
 		"type" : "WT_INPUT",
@@ -1092,7 +1092,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 		"groupName" : "controls",
 		"x" : 250,
 		"y" : 300,
-		"text" : "Restart"
+		"text" : "Reiniciar"
 	},
 	{
 		"type" : "WT_INPUT",
@@ -1100,7 +1100,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 		"groupName" : "controls",
 		"x" : 250,
 		"y" : 350,
-		"text" : "Pause"
+		"text" : "Pausa"
 	},
 	{
 		"type" : "WT_BUTTON",
@@ -1108,7 +1108,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 		"groupName" : "controls",
 		"x" : 250,
 		"y" : 400,
-		"text" : "Back"
+		"text" : "Enrere"
 	}
 ]
 [

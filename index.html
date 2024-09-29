@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Vermada Retro</title>
+<html><head>
+    <title>Sa Vermada Retro</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="description" content="Vermada Retro Carrossa 2024">
+    <meta name="description" content="Carrossa n.21 Sa Vermada 2024">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0.0, viewport-fit=cover">
 	<style>
 	a {
@@ -27,7 +26,7 @@
 		overflow: auto;
 		width: 100vw;
 	}
-	@media screen and (min-width: 960px) {
+	@media screen and (min-width: 576px) {
 		canvas {
 			height: 100vh;
 			width: auto;
@@ -66,6 +65,9 @@
 		border-left: 2px solid #867ae0;
 		transform: translateZ(0);
 		animation: page-loader 1.1s infinite linear;
+	}
+	#select-version {
+		display: none;
 	}
 	span {
 		--outline: #ccc;
@@ -119,6 +121,9 @@
 	#b,
 	#c {
 		position: fixed;
+	}
+	#a,
+	#b {
 		bottom: 0;
 	}
 	#a {
@@ -133,7 +138,7 @@
 	}
 	</style>
 </head>
-<body>
+<body class="activar-pantalla-completa">
     <!-- Create the canvas that the C++ code will draw into -->
     <canvas id="canvas" oncontextmenu="event.preventDefault()" data-key="Enter" data-which="13"></canvas>
 	<section id="a">
@@ -158,12 +163,13 @@
 			<progress value="0" max="0" id="progress" hidden=""></progress>  
 		</div>
 	</div>
-	<div class="info-overlay" id="select-version" style="display: block;">
+	<div class="info-overlay" id="select-version">
 		<a href="#" id="load">Load</a><br>
-		~4mb
+		~4MB
 	</div>
     <!-- Allow the C++ to access the canvas element -->
     <script type="text/javascript">
+		// Note: useful as template whether game is heavier in size (click to confirm before downloading wasm)
 		/*var loadScript = (ev, src) => {
 			ev.preventDefault();
 
@@ -175,78 +181,74 @@
 			var s = document.createElement('script');
 			s.setAttribute('src', src);
 			document.head.appendChild(s);
-		};*/	
+		};
+		document.getElementById('load').addEventListener('click', (ev) => loadScript(ev, 'index.js'));*/
 
-		document.getElementById('select-version').style.display = 'block';
-		// document.getElementById('load').addEventListener('click', (ev) => loadScript(ev, 'index.js'));
-
-		// Hide select-version, show loader
-		document.getElementById('select-version').style.display = 'none';
-		document.getElementById('loading').style.display = 'block';
-
-		// Load the requested script
-		var s = document.createElement('script');
-		s.setAttribute('src', "index.js");
-		document.head.appendChild(s);
+		// Note: useful as template whether game is lighter in size (load wasm directly)
+		(() => {
+			// Hide select-version, show loader
+			document.getElementById('select-version').style.display = 'none';
+			document.getElementById('loading').style.display = 'none';
+		
+			// Load the requested script
+			var s = document.createElement('script');
+			s.setAttribute('src', 'index.js');
+			document.head.appendChild(s);
+		})();
+		
+		// Do not show sections if hardware keyboard is detected
+		// https://stackoverflow.com/questions/18880236/how-do-i-detect-hardware-keyboard-presence-with-javascript
+		if (!'ontouchstart' in document.documentElement) {
+			document.getElementById("#b").style.display = none;
+			document.getElementById("#c").style.display = none;
+		}
 
 		var statusElement = document.getElementById('status');
 		var progressElement = document.getElementById('progress');
 		var spinnerElement = document.getElementById('spinner');
 
-		// Hold down key event repeat rate
-		let holdInterval = null;
-
-		var create_and_fire_event = function(event, type) {
+		var create_and_fire_event = function (event, type) {
 			var control_event = new Event(type, { bubbles: true });
 
 			control_event.code = event.target.dataset.key;
 			control_event.key = event.target.dataset.key;
+
 			control_event.keyCode = event.target.dataset.which;
 			control_event.which = event.target.dataset.which;
 
 			Module.canvas.dispatchEvent(control_event);
-		};
-
-		// Function to handle pressing down on key (mobile or click)
-		var handlePressStart = function(event) {
-			event.preventDefault();
-			create_and_fire_event(event, 'keydown');
-
-			// Start triggering keydown repeatedly while holding
-			holdInterval = setInterval(function() {
-				create_and_fire_event(event, 'keydown');
-			}, 100); // Adjust the interval rate as necessary
-		};
-
-		// Function to handle releasing the key (mobile or click)
-		var handlePressEnd = function(event) {
-			event.preventDefault();
-			create_and_fire_event(event, 'keyup');
-
-			// Stop the repeated keydown events
-			if (holdInterval) {
-				clearInterval(holdInterval);
-				holdInterval = null;
-			}
 		};
     
 		var Module = {
 			preRun: [],
 			postRun: [
 				function () {
-					// Attach event listeners for both desktop and mobile
-					Array.from(document.querySelectorAll('span, canvas')).forEach(function(control) {
+					Array.from(document.querySelectorAll('span, canvas')).forEach(function (control) {
 						if ('ontouchstart' in document.documentElement) {
-							// Mobile: use touch events
-							control.addEventListener('touchstart', handlePressStart);
-							control.addEventListener('touchend', handlePressEnd);
-							control.addEventListener('touchcancel', handlePressEnd); // For handling interruptions
-						} else {
-							// Desktop: use mouse events
-							control.addEventListener('mousedown', handlePressStart);
-							control.addEventListener('mouseup', handlePressEnd);
-							control.addEventListener('mouseleave', handlePressEnd); // In case the mouse leaves the button area
-						}
+                            // Mobile:
+                            control.addEventListener('touchstart', function (event) {
+				event.preventDefault();
+                                create_and_fire_event(event, 'keydown');
+                            });
+                            control.addEventListener('touchend', function (event) {
+				event.preventDefault();
+                                create_and_fire_event(event, 'keyup');
+                            });
+                            control.addEventListener('touchcancel', function (event) {
+				event.preventDefault();
+                                create_and_fire_event(event, 'keyup');
+                            });
+                        }
+						else {
+                            // Desktop:
+                            control.addEventListener('click', function (event) {
+				event.preventDefault();
+                                create_and_fire_event(event, 'keydown');
+                                window.setTimeout(function () {
+                                    create_and_fire_event(event, 'keyup');
+                                }, 100);
+                            });
+                        }
 					});
 				}
 			],
@@ -306,5 +308,4 @@
     </script>
 
 
-</body>
-</html>
+</body></html>
