@@ -170,6 +170,7 @@
     <!-- Allow the C++ to access the canvas element -->
     <script type="text/javascript">
 		// Note: useful as template whether game is heavier in size (click to confirm before downloading wasm)
+		/*
 		var loadScript = (ev, src) => {
 			ev.preventDefault();
 
@@ -182,23 +183,28 @@
 			s.setAttribute('src', src);
 			document.head.appendChild(s);
 		};
-		document.getElementById('load').addEventListener('click', (ev) => loadScript(ev, 'index.js'));
+		document.getElementById('load').addEventListener('click', (ev) => loadScript(ev, 'index.js'));*/
 
 		// Note: useful as template whether game is lighter in size (load wasm directly)
-		/*
 		(() => {
 			// Hide select-version, show loader
 			document.getElementById('select-version').style.display = 'none';
-			document.getElementById('loading').style.display = 'block';
+			document.getElementById('loading').style.display = 'none';
 		
 			// Load the requested script
 			var s = document.createElement('script');
 			s.setAttribute('src', 'index.js');
 			document.head.appendChild(s);
 		})();
-		*/
 
-		document.getElementById('select-version').style.display = 'block';
+		// Do not show sections if hardware keyboard is detected
+		// https://stackoverflow.com/questions/18880236/how-do-i-detect-hardware-keyboard-presence-with-javascript
+		if (!('ontouchstart' in document.documentElement || 'ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+			// Likely a desktop with hardware keyboard
+			document.getElementById('a').style.display = 'none';
+			document.getElementById("b").style.display = 'none';
+			document.getElementById("c").style.display = 'none';
+		}
 
 		var statusElement = document.getElementById('status');
 		var progressElement = document.getElementById('progress');
