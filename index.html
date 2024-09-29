@@ -22,15 +22,21 @@
 		display: flex;
 		justify-content: center;
 	}
+	/*
+	* See https://stackoverflow.com/questions/5127937/how-to-center-canvas-in-html5
+	* See https://stackoverflow.com/questions/34772957/how-to-make-canvas-responsive
+	*/
 	canvas {
-		overflow: auto;
-		width: 100vw;
-	}
-	@media screen and (min-width: 576px) {
-		canvas {
-			height: 100vh;
-			width: auto;
-		}
+		width: 100%;
+		object-fit: contain;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 0;
+		margin: auto;
+		display: block;
 	}
 	@keyframes page-loader { 
 		0% {transform: rotate(0deg); } 
@@ -138,7 +144,7 @@
 	}
 	</style>
 </head>
-<body class="activar-pantalla-completa">
+<body>
     <!-- Create the canvas that the C++ code will draw into -->
     <canvas id="canvas" oncontextmenu="event.preventDefault()" data-key="Enter" data-which="13"></canvas>
 	<section id="a">
@@ -170,7 +176,8 @@
     <!-- Allow the C++ to access the canvas element -->
     <script type="text/javascript">
 		// Note: useful as template whether game is heavier in size (click to confirm before downloading wasm)
-		/*var loadScript = (ev, src) => {
+		/*
+		var loadScript = (ev, src) => {
 			ev.preventDefault();
 
 			// Hide select-version, show loader
@@ -195,7 +202,7 @@
 			s.setAttribute('src', 'index.js');
 			document.head.appendChild(s);
 		})();
-		
+
 		// Do not show sections if hardware keyboard is detected
 		// https://stackoverflow.com/questions/18880236/how-do-i-detect-hardware-keyboard-presence-with-javascript
 		if (!('ontouchstart' in document.documentElement || 'ontouchstart' in window || navigator.maxTouchPoints > 0)) {
