@@ -43,15 +43,15 @@
 		"filename" : "gfx/entities/church.png",
 		"x" : 49,
 		"y" : 0,
-		"w" : 40,
-		"h" : 96,
+		"w" : 54,
+		"h" : 128,
 		"rotated" : 0
 	},
 	{
 		"filename" : "gfx/entities/platform.png",
 		"x" : 0,
 		"y" : 117,
-		"w" : 92,
+		"w" : 40,
 		"h" : 10,
 		"rotated" : 0
 	},
@@ -69,22 +69,6 @@
 		"y" : 74,
 		"w" : 16,
 		"h" : 16,
-		"rotated" : 0
-	},
-	{
-		"filename" : "gfx/main/noTick.png",
-		"x" : 105,
-		"y" : 6,
-		"w" : 22,
-		"h" : 22,
-		"rotated" : 0
-	},
-	{
-		"filename" : "gfx/main/tick.png",
-		"x" : 105,
-		"y" : 29,
-		"w" : 22,
-		"h" : 22,
 		"rotated" : 0
 	},
 	{
