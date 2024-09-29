@@ -90,7 +90,7 @@
 	"keyControls" : {
 		"left" : 4,
 		"right" : 7,
-		"jump" : 12,
+		"jump" : 44,
 		"restart" : 42,
 		"pause" : 41
 	},
@@ -589,7 +589,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 			"ex":	2392,
 			"ey":	472,
 			"pause":	60,
-			"speed":	2,
+			"speed":	1,
 			"enabled":	0
 		}, {
 			"type":	"item",
@@ -1016,7 +1016,7 @@ While chowing down on a half-frozen, out-of-date lasagne that he bought from the
 			"ex":	2392,
 			"ey":	472,
 			"pause":	60,
-			"speed":	2,
+			"speed":	1,
 			"enabled":	0
 		}, {
 			"type":	"item",
