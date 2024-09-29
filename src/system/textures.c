@@ -75,7 +75,7 @@ SDL_Texture *loadTexture(const char *filename)
 
 	if (texture == NULL)
 	{
-		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Loading %s ...", filename);
+		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_DEBUG, "Loading %s ...", filename);
 		texture = IMG_LoadTexture(app.renderer, filename);
 
 		addTextureToCache(filename, texture);

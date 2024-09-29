@@ -96,7 +96,7 @@ static void initJoypad(void)
 
 	n = SDL_NumJoysticks();
 
-	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "%d joysticks available", n);
+	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_DEBUG, "%d joysticks available", n);
 
 	for (i = 0 ; i < n ; i++)
 	{
@@ -104,7 +104,7 @@ static void initJoypad(void)
 
 		if (app.joypad)
 		{
-			SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "Joystick [name='%s', Axes=%d, Buttons=%d]", SDL_JoystickNameForIndex(i), SDL_JoystickNumAxes(app.joypad), SDL_JoystickNumButtons(app.joypad));
+			SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_DEBUG, "Joystick [name='%s', Axes=%d, Buttons=%d]", SDL_JoystickNameForIndex(i), SDL_JoystickNumAxes(app.joypad), SDL_JoystickNumButtons(app.joypad));
 			return;
 		}
 	}
