@@ -212,7 +212,6 @@ struct Credit {
 };
 
 typedef struct {
-	char saveDir[MAX_FILENAME_LENGTH];
 	SDL_Renderer *renderer;
 	SDL_Window *window;
 	SDL_Texture *backBuffer;
