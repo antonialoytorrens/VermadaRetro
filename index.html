@@ -198,9 +198,11 @@
 		
 		// Do not show sections if hardware keyboard is detected
 		// https://stackoverflow.com/questions/18880236/how-do-i-detect-hardware-keyboard-presence-with-javascript
-		if (!'ontouchstart' in document.documentElement) {
-			document.getElementById("#b").style.display = none;
-			document.getElementById("#c").style.display = none;
+		if (!('ontouchstart' in document.documentElement || 'ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+			// Likely a desktop with hardware keyboard
+			document.getElementById('a').style.display = 'none';		
+			document.getElementById("b").style.display = 'none';
+			document.getElementById("c").style.display = 'none';
 		}
 
 		var statusElement = document.getElementById('status');
