@@ -19,36 +19,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "../../common.h"
-#include "unixInit.h"
 #include <sys/stat.h>
 #include <pwd.h>
 #include <unistd.h>
 #include <errno.h>
 
 extern App app;
-
-void createSaveFolder(void)
-{
-	char *userHome;
-	char dir[MAX_FILENAME_LENGTH];
-
-	userHome = getenv("HOME");
-
-	if (!userHome)
-	{
-		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_WARN, "Unable to determine user save folder. Will save to current dir.");
-		return;
-	}
-
-	SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_INFO, "User home = %s", userHome);
-
-	sprintf(dir, "%s/.local/share/saVermadaRetro", userHome);
-	if (mkdir(dir, S_IRWXU|S_IRWXG|S_IROTH|S_IXOTH) != 0 && errno != EEXIST)
-	{
-		SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_WARN, "Failed to create save dir '%s'. Will save to current dir.", dir);
-		return;
-	}
-
-	STRNCPY(app.saveDir, dir, MAX_FILENAME_LENGTH);
-}
 
