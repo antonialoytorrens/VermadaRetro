@@ -69,7 +69,10 @@ static void touch(Entity *other)
 
 			stage.nextStageTimer = FPS * 3;
 
-			addChurchSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+			for (short i = 0; i < 10; i++)
+			{
+				addChurchSplashParticles(self->x + self->atlasImage->rect.w / 2, self->y + self->atlasImage->rect.h / 2);
+			}
 
 			playPositionalSound(SND_FINISH, CH_PLAYER, self->x, self->y, stage.player->x, stage.player->y);
 
