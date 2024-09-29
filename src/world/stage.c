@@ -467,7 +467,7 @@ static void drawHud(void)
 
 	drawRect(0, 0, SCREEN_WIDTH, 30, 0, 0, 0, 192);
 
-	drawText(10, 0, 32, TEXT_LEFT, app.colors.white, "Nivell: %03d", stage.num);
+	drawText(10, 0, 32, TEXT_LEFT, app.colors.white, "Nivell: %s", "060");
 
 	if (numTips > 0)
 	{
