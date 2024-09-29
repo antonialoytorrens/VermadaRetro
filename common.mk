@@ -22,4 +22,4 @@ $(OUT)/%.o: %.c %.h $(DEPS)
 	$(CC) $(CFLAGS) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	$(RM) -rf $(OUT) $(PROG) $(MAP_PROG) $(LOCALE_MO)
+	$(RM) -rf $(OUT) $(PROG) $(PROG).wasm $(MAP_PROG) $(MAP_PROG).wasm index.html index.js $(LOCALE_MO)

@@ -2,8 +2,10 @@
 *.o
 
 # binaries
-waterCloset
+saVermadaRetro
+saVermadaRetro.wasm
 mapEditor
+mapEditor.wasm
 *.exe
 
 # folders

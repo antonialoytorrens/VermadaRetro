@@ -1,20 +1,8 @@
-#!/usr/bin/make -f
-
 PROG = saVermadaRetro
 MAP_PROG = mapEditor
-BUILD_TYPE = debug
 
-ifeq ($(BUILD_TYPE), debug)
-    # CXXFLAGS += -g -lefence
-	CXXFLAGS += -g
-	#CXXFLAGS += -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all
-	#CXXFLAGS += -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow
-	#CXXFLAGS += -fno-omit-frame-pointer -fno-sanitize=null -fno-sanitize=alignment
-else ifeq ($(BUILD_TYPE), release)
-    CXXFLAGS += -O2
-endif
-
-CC = clang-16
+CC = ~/emsdk/upstream/emscripten/emcc --use-port=sdl2_image:formats=png --use-port=sdl2_mixer --use-port=sdl2_ttf
+LD = ~/emsdk/upstream/bin/wasm-ld
 PREFIX ?= /usr
 BIN_DIR ?= $(PREFIX)/bin
 DATA_DIR ?= /opt/$(PROG)
@@ -38,24 +26,14 @@ NPROCS = $(shell grep -c 'processor' /proc/cpuinfo)
 MAKEFLAGS += -j$(NPROCS)
 
 CXXFLAGS += `sdl2-config --cflags` -DVERSION=$(VERSION) -DREVISION=$(REVISION) -DDATA_DIR=\"$(DATA_DIR)\"
+CXXFLAGS += -Wall -Wempty-body -Werror -Wstrict-prototypes -Warray-bounds
+CXXFLAGS += -flto -O2 -fno-rtti -fno-exceptions
 
-ifeq ($(CC), gcc)
-	CXXFLAGS += -Wall -Wempty-body -Werror -Wpedantic -Wstrict-prototypes -Werror=maybe-uninitialized -Warray-bounds -Wno-aggressive-loop-optimizations
-else  # Clang
-	CXXFLAGS += -Wall -Wempty-body -Wpedantic -Wstrict-prototypes -Werror=uninitialized -Warray-bounds
-endif
-
-LDFLAGS += `sdl2-config --libs` -lSDL2_mixer -lSDL2_image -lSDL2_ttf -lm
+LDFLAGS += `sdl2-config --libs` -lm
 
 SHARED_FILES = LICENSE README.md data gfx music sound fonts
 DIST_FILES = $(SHARED_FILES) $(PROG)
 SRC_DIST_FILES = $(SHARED_FILES) src makefile* common.mk
-
-# Set targets for debug and release builds
-debug: BUILD_TYPE = debug
-debug: $(PROG) $(MAP_PROG)
-
-release: $(PROG) $(MAP_PROG)
 
 $(PROG): $(GAME_OBJS)
 	$(CC) -o $@ $(GAME_OBJS) $(LDFLAGS)
