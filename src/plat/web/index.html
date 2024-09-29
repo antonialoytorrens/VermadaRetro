@@ -22,15 +22,21 @@
 		display: flex;
 		justify-content: center;
 	}
+	/*
+	* See https://stackoverflow.com/questions/5127937/how-to-center-canvas-in-html5
+	* See https://stackoverflow.com/questions/34772957/how-to-make-canvas-responsive
+	*/
 	canvas {
-		overflow: auto;
-		width: 100vw;
-	}
-	@media screen and (min-width: 576px) {
-		canvas {
-			height: 100vh;
-			width: auto;
-		}
+		width: 100%;
+		object-fit: contain;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		padding: 0;
+		margin: auto;
+		display: block;
 	}
 	@keyframes page-loader { 
 		0% {transform: rotate(0deg); } 
