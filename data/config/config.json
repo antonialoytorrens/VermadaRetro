@@ -9,7 +9,7 @@
 	"keyControls" : {
 		"left" : 4,
 		"right" : 7,
-		"jump" : 12,
+		"jump" : 44,
 		"restart" : 42,
 		"pause" : 41
 	},
