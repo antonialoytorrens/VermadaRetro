@@ -5,7 +5,7 @@ MAP_PROG = mapEditor
 BUILD_TYPE = release
 
 ifeq ($(BUILD_TYPE), debug)
-    # CXXFLAGS += -g -lefence
+	#CXXFLAGS += -g -lefence
 	CXXFLAGS += -g
 	#CXXFLAGS += -fsanitize=address -fsanitize=undefined -fno-sanitize-recover=all
 	#CXXFLAGS += -fsanitize=float-divide-by-zero -fsanitize=float-cast-overflow
@@ -50,12 +50,6 @@ LDFLAGS += `sdl2-config --libs` -lSDL2_mixer -lSDL2_image -lSDL2_ttf -lm
 SHARED_FILES = LICENSE README.md data gfx music sound fonts
 DIST_FILES = $(SHARED_FILES) $(PROG)
 SRC_DIST_FILES = $(SHARED_FILES) src makefile* common.mk
-
-# Set targets for debug and release builds
-debug: BUILD_TYPE = debug
-debug: $(PROG) $(MAP_PROG)
-
-release: $(PROG) $(MAP_PROG)
 
 $(PROG): $(GAME_OBJS)
 	$(CC) -o $@ $(GAME_OBJS) $(LDFLAGS)
