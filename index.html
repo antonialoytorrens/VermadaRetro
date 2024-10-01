@@ -3,9 +3,9 @@
     <title>Sa Vermada Retro</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="Carrossa n.21 Sa Vermada 2024">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0.0, viewport-fit=cover">-->
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0.0, viewport-fit=cover">
 	<style>
 	a {
 		color: #867ae0;
@@ -20,16 +20,12 @@
 		font-size: 16px;
 		background-color: black;
 		margin: 0;
-		display: flex;
-		justify-content: center;
+		text-align: center; /* Fallback for centering */
 	}
-	/*
-	* See https://stackoverflow.com/questions/5127937/how-to-center-canvas-in-html5
-	* See https://stackoverflow.com/questions/34772957/how-to-make-canvas-responsive
-	*/
 	canvas {
 		width: 100%;
 		height: 100%;
+		/* object-fit is not widely supported in older browsers */
 		object-fit: contain;
 		position: absolute;
 		top: 0;
@@ -40,9 +36,21 @@
 		margin: auto;
 		display: block;
 	}
+	@-webkit-keyframes page-loader { 
+		0% {
+			-webkit-transform: rotate(0deg);
+		}
+		100% {
+			-webkit-transform: rotate(360deg);
+		}
+	}
 	@keyframes page-loader { 
-		0% {transform: rotate(0deg); } 
-		100% { transform: rotate(360deg);}
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
 	}
 	.info-overlay {
 		text-align: center;
@@ -57,8 +65,11 @@
 		display: none;
 	}
 	#spinner {
-		content: "";
+		/* content property on non-pseudo elements is not supported */
+		/* content: ""; */
 		border-radius: 50%;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
 		width: 48px;
 		height: 48px;
 		position: absolute;
@@ -71,76 +82,79 @@
 		border-right: 2px solid #222;
 		border-bottom: 2px solid #222;
 		border-left: 2px solid #867ae0;
+		-webkit-transform: translateZ(0);
+		-ms-transform: translateZ(0);
 		transform: translateZ(0);
+		-webkit-animation: page-loader 1.1s infinite linear;
 		animation: page-loader 1.1s infinite linear;
 	}
 	#select-version {
 		display: none;
 	}
 	span {
-		--outline: #ccc;
 		font-family: sans-serif;
 		font-size: 18px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		text-align: center;
+		line-height: 42px; /* Adjusted for vertical centering */
 		position: relative;
 		padding-bottom: 3px;
 		width: 48px;
 		height: 45px;
 		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
 		background-color: #fff;
 		color: #444;
-		border-top: 1px solid var(--outline);
-		box-shadow: 0px 3px 0px 2px var(--outline);
+		border-top: 1px solid #ccc;
+		box-shadow: 0px 3px 0px 2px #ccc;
 		-webkit-user-select: none;
-  		user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
 	}
 	section {
-		--cell-length: 56px;
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: repeat(2, 1fr);
-		place-items: center;
-		grid-gap: 1px;
-		width: calc(var(--cell-length) * 3);
-		height: calc(var(--cell-length) * 2);
+		margin: 10px;
+		width: 188px; /* Calculated from 56px * 3 */
+		height: 112px; /* Calculated from 56px * 2 */
 	}
-	section ~ section {
-		margin-top: 50px;
+	.kb {
+		float: left;
+		width: 56px;
+		height: 56px;
+		box-sizing: border-box;
 	}
-	section > span:nth-child(1) {
-		grid-column: 2;
-		grid-row: 1;
-	}
-	section > span:nth-child(2) {
-		grid-column: 1;
-		grid-row: 2;
-	}
-	section > span:nth-child(3) {
-		grid-column: 2;
-		grid-row: 2;
-	}
-	section > span:nth-child(4) {
-		grid-column: 3;
-		grid-row: 2;
-	}
-	#a,
-	#b,
-	#c {
-		position: fixed;
-	}
-	#a,
-	#b {
-		bottom: 0;
+	#w {
+		/* Fallback positioning for grid */
+		margin-left: 66px;
+		margin-bottom: 10px;
 	}
 	#a {
-		left: 0;
+		clear: left;
 	}
-	#b {
+	#s {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+	/*#d {
+	}*/
+	#x,
+	#y,
+	#z {
+		position: absolute; /* Fallback for older browsers */
+		position: fixed;
+	}
+	#x,
+	#y {
+		bottom: 0;
+	}
+	#x {
+		left: 0;
+		margin-bottom: 20px;
+	}
+	#y {
 		right: 0;
 	}
-	#c {
+	#z {
 		top: 0;
 		right: 0;
 	}
@@ -149,21 +163,18 @@
 <body>
     <!-- Create the canvas that the C++ code will draw into -->
     <canvas id="canvas" oncontextmenu="event.preventDefault()" data-key="Enter" data-which="13"></canvas>
-	<section id="a">
-		<span data-key="KeyW" data-which="38">↑</span>
-		<span data-key="KeyA" data-which="65">←</span>
-		<span data-key="KeyS" data-which="40">↓</span>
-		<span data-key="KeyD" data-which="68">→</span>
+	<section id="x">
+		<span id="w" class="kb" data-key="KeyW" data-which="38">↑</span>
+		<span id="a" class="kb" data-key="KeyA" data-which="65">←</span>
+		<span id="s" class="kb" data-key="KeyS" data-which="40">↓</span>
+		<span id="d" class="kb" data-key="KeyD" data-which="68">→</span>
 	</section>
-	
-	<section id="b">
-		<span data-key="Space" data-which="44" style="right: 0; bottom: 0; position: absolute;">␣</span>
+	<section id="y">
+		<span id="sp" class="kb" data-key="Space" data-which="44" style="right: 0; bottom: 0; position: absolute;">␣</span>
 	</section>
-
-	<section id="c" style="margin-top: 0;">
-		<span data-key="Backspace" data-which="8" style="right: 0; top: 0; position: absolute;">⟳</span>
+	<section id="z">
+		<span id="bs" class="kb" data-key="Backspace" data-which="8" style="right: 0; top: 0; position: absolute;">⟳</span>
 	</section>
-
 	<div class="info-overlay" id="loading">
 		<div id="spinner"></div>
 		<div id="status">downloading...</div>
@@ -175,13 +186,14 @@
 		<a href="#" id="load">Load</a><br>
 		~4MB
 	</div>
+	<script src="object-fit-polyfill/objectFitPolyfill.min.js"></script>
     <!-- Allow the C++ to access the canvas element -->
     <script type="text/javascript">
 		// Note: useful as template whether game is heavier in size (click to confirm before downloading wasm)
 		/*
-		var loadScript = (ev, src) => {
+		function loadScript(ev, src) {
 			ev.preventDefault();
-
+		
 			// Hide select-version, show loader
 			document.getElementById('select-version').style.display = 'none';
 			document.getElementById('loading').style.display = 'block';
@@ -191,11 +203,11 @@
 			s.setAttribute('src', src);
 			document.head.appendChild(s);
 		};
-		document.getElementById('load').addEventListener('click', (ev) => loadScript(ev, 'index.js'));
+		document.getElementById('load').addEventListener('click', function(ev) { loadScript(ev, 'index.js'); });
 		*/
 
 		// Note: useful as template whether game is lighter in size (load wasm directly)
-		(() => {
+		(function() {
 			// Hide select-version, show loader
 			document.getElementById('select-version').style.display = 'none';
 			document.getElementById('loading').style.display = 'none';
@@ -210,23 +222,33 @@
 		// https://stackoverflow.com/questions/18880236/how-do-i-detect-hardware-keyboard-presence-with-javascript
 		if (!('ontouchstart' in document.documentElement || 'ontouchstart' in window || navigator.maxTouchPoints > 0)) {
 			// Likely a desktop with hardware keyboard
-			document.getElementById('a').style.display = 'none';
-			document.getElementById("b").style.display = 'none';
-			document.getElementById("c").style.display = 'none';
+			document.getElementById("x").style.display = 'none';
+			document.getElementById("y").style.display = 'none';
+			document.getElementById("z").style.display = 'none';
 		}
 
 		var statusElement = document.getElementById('status');
 		var progressElement = document.getElementById('progress');
 		var spinnerElement = document.getElementById('spinner');
 
-		var create_and_fire_event = function (event, type) {
-			var control_event = new Event(type, { bubbles: true });
-
-			control_event.code = event.target.dataset.key;
-			control_event.key = event.target.dataset.key;
-
-			control_event.keyCode = event.target.dataset.which;
-			control_event.which = event.target.dataset.which;
+		function create_and_fire_event(event, type) {
+			var control_event;
+			if (typeof(Event) === 'function') {
+				control_event = new Event(type, { bubbles: true });
+			} else {
+				control_event = document.createEvent('Event');
+				control_event.initEvent(type, true, true);
+			}
+		
+			var target = event.target || event.srcElement;
+			var keyAttr = target.getAttribute('data-key');
+			var whichAttr = target.getAttribute('data-which');
+		
+			control_event.code = keyAttr;
+			control_event.key = keyAttr;
+		
+			control_event.keyCode = parseInt(whichAttr, 10);
+			control_event.which = parseInt(whichAttr, 10);
 
 			Module.canvas.dispatchEvent(control_event);
 		};
@@ -269,7 +291,7 @@
 				console.log(text);
 			},
 			canvas: document.getElementById('canvas'),
-			setStatus: (text) => {
+			setStatus: function (text) {
 				if (!Module.setStatus.last) {
 					Module.setStatus.last = { time: Date.now(), text: '' };
 				}
@@ -301,23 +323,28 @@
 				statusElement.innerHTML = text;
 			},
 			totalDependencies: 0,
-			monitorRunDependencies: (left) => {
+			monitorRunDependencies: function (left) {
 				Module.totalDependencies = Math.max(Module.totalDependencies, left);
-				Module.setStatus(left ? 'preparing... (' + (Module.totalDependencies-left) + '/' + Module.totalDependencies + ')' : 'all downloads complete.');
+				Module.setStatus(left ? 'preparing... (' + (Module.totalDependencies - left) + '/' + Module.totalDependencies + ')' : 'all downloads complete.');
 			}
 		};
 		Module.setStatus('downloading...');
-		window.onerror = () => {
-			Module.setStatus('Exception thrown, see JavaScript console');
-			document.getElementById('loading').style.display = 'block';
+		window.onerror = function(message, source, lineno, colno, error) {
 			spinnerElement.style.display = 'none';
-			Module.setStatus = (text) => {
+			var errorMessage = 'ERROR: ' + message + ' at ' + source + ':' + lineno + ':' + colno;
+			document.getElementById('loading').textContent = errorMessage;
+			document.getElementById('loading').style.color = 'red';
+			document.getElementById('loading').style.display = 'block';
+		
+
+
+			Module.setStatus = function(text) {
 				if (text) {
 					console.error('[post-exception status] ' + text);
+					document.getElementById('loading').textContent += '\n[post-exception status] ' + text;
 				}
 			};
+			return false; // Prevent the default browser error handler
 		};
     </script>
-
-
 </body></html>
