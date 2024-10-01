@@ -154,15 +154,12 @@
 		<span data-key="KeyS" data-which="40">↓</span>
 		<span data-key="KeyD" data-which="68">→</span>
 	</section>
-	
 	<section id="b">
 		<span data-key="Space" data-which="44" style="right: 0; bottom: 0; position: absolute;">␣</span>
 	</section>
-
-	<section id="c" style="margin-top: 0;">
+	<section id="c">
 		<span data-key="Backspace" data-which="8" style="right: 0; top: 0; position: absolute;">⟳</span>
 	</section>
-
 	<div class="info-overlay" id="loading">
 		<div id="spinner"></div>
 		<div id="status">downloading...</div>
@@ -174,13 +171,14 @@
 		<a href="#" id="load">Load</a><br>
 		~4MB
 	</div>
+	<script src="object-fit-polyfill/objectFitPolyfill.min.js"></script>
     <!-- Allow the C++ to access the canvas element -->
     <script type="text/javascript">
 		// Note: useful as template whether game is heavier in size (click to confirm before downloading wasm)
 		/*
-		var loadScript = (ev, src) => {
+		function loadScript(ev, src) {
 			ev.preventDefault();
-
+		
 			// Hide select-version, show loader
 			document.getElementById('select-version').style.display = 'none';
 			document.getElementById('loading').style.display = 'block';
@@ -190,11 +188,11 @@
 			s.setAttribute('src', src);
 			document.head.appendChild(s);
 		};
-		document.getElementById('load').addEventListener('click', (ev) => loadScript(ev, 'index.js'));
+		document.getElementById('load').addEventListener('click', function(ev) { loadScript(ev, 'index.js'); });
 		*/
 
 		// Note: useful as template whether game is lighter in size (load wasm directly)
-		(() => {
+		(function() {
 			// Hide select-version, show loader
 			document.getElementById('select-version').style.display = 'none';
 			document.getElementById('loading').style.display = 'none';
@@ -207,25 +205,35 @@
 
 		// Do not show sections if hardware keyboard is detected
 		// https://stackoverflow.com/questions/18880236/how-do-i-detect-hardware-keyboard-presence-with-javascript
-		if (!('ontouchstart' in document.documentElement || 'ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+		/*if (!('ontouchstart' in document.documentElement || 'ontouchstart' in window || navigator.maxTouchPoints > 0)) {
 			// Likely a desktop with hardware keyboard
 			document.getElementById('a').style.display = 'none';
 			document.getElementById("b").style.display = 'none';
 			document.getElementById("c").style.display = 'none';
-		}
+		}*/
 
 		var statusElement = document.getElementById('status');
 		var progressElement = document.getElementById('progress');
 		var spinnerElement = document.getElementById('spinner');
 
-		var create_and_fire_event = function (event, type) {
-			var control_event = new Event(type, { bubbles: true });
-
-			control_event.code = event.target.dataset.key;
-			control_event.key = event.target.dataset.key;
-
-			control_event.keyCode = event.target.dataset.which;
-			control_event.which = event.target.dataset.which;
+		function create_and_fire_event(event, type) {
+			var control_event;
+			if (typeof(Event) === 'function') {
+				control_event = new Event(type, { bubbles: true });
+			} else {
+				control_event = document.createEvent('Event');
+				control_event.initEvent(type, true, true);
+			}
+		
+			var target = event.target || event.srcElement;
+			var keyAttr = target.getAttribute('data-key');
+			var whichAttr = target.getAttribute('data-which');
+		
+			control_event.code = keyAttr;
+			control_event.key = keyAttr;
+		
+			control_event.keyCode = parseInt(whichAttr, 10);
+			control_event.which = parseInt(whichAttr, 10);
 
 			Module.canvas.dispatchEvent(control_event);
 		};
@@ -268,7 +276,7 @@
 				console.log(text);
 			},
 			canvas: document.getElementById('canvas'),
-			setStatus: (text) => {
+			setStatus: function (text) {
 				if (!Module.setStatus.last) {
 					Module.setStatus.last = { time: Date.now(), text: '' };
 				}
@@ -300,23 +308,28 @@
 				statusElement.innerHTML = text;
 			},
 			totalDependencies: 0,
-			monitorRunDependencies: (left) => {
+			monitorRunDependencies: function (left) {
 				Module.totalDependencies = Math.max(Module.totalDependencies, left);
-				Module.setStatus(left ? 'preparing... (' + (Module.totalDependencies-left) + '/' + Module.totalDependencies + ')' : 'all downloads complete.');
+				Module.setStatus(left ? 'preparing... (' + (Module.totalDependencies - left) + '/' + Module.totalDependencies + ')' : 'all downloads complete.');
 			}
 		};
 		Module.setStatus('downloading...');
-		window.onerror = () => {
-			Module.setStatus('Exception thrown, see JavaScript console');
-			document.getElementById('loading').style.display = 'block';
+		window.onerror = function(message, source, lineno, colno, error) {
 			spinnerElement.style.display = 'none';
-			Module.setStatus = (text) => {
+			var errorMessage = 'ERROR: ' + message + ' at ' + source + ':' + lineno + ':' + colno;
+			document.getElementById('loading').textContent = errorMessage;
+			document.getElementById('loading').style.color = 'red';
+			document.getElementById('loading').style.display = 'block';
+		
+
+
+			Module.setStatus = function(text) {
 				if (text) {
 					console.error('[post-exception status] ' + text);
+					document.getElementById('loading').textContent += '\n[post-exception status] ' + text;
 				}
 			};
+			return false; // Prevent the default browser error handler
 		};
     </script>
-
-
 </body></html>

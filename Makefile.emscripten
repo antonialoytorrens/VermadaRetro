@@ -38,6 +38,12 @@ SRC_DIST_FILES = $(SHARED_FILES) src makefile* common.mk
 $(PROG): $(GAME_OBJS)
 	$(CC) -o $@ $(GAME_OBJS) $(LDFLAGS)
 
+$(GENERATED_CREDITS): $(RAW_CREDITS)
+	@echo "Generating credits with Emscripten build info..."; \
+	sed '/.*%%EMSCRIPTEN_CREDITS%%.*/c\
+1 Built with Emscripten $(EMVERSION)\
+1 Object-fit polyfill by Constance Chen (ISC License): https://github.com/cee-chen/object-fit-polyfill' $< > $@; \
+
 # prepare an archive for the program
 dist:
 	$(RM) -rf $(PROG)-$(VERSION).$(REVISION)

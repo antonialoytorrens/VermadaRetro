@@ -15,18 +15,11 @@ GAME_OBJS = $(OBJS) $(OUT)/src/main.o
 
 MAP_OBJS = $(OBJS) $(OUT)/src/mapEditor.o
 
-all: $(PROG) $(MAP_PROG) credits
+RAW_CREDITS = raw/credits.txt
 
-credits: data/misc/credits.txt
+GENERATED_CREDITS = data/misc/credits.txt
 
-data/misc/credits.txt: raw/credits.txt
-	@if echo '$(CC)' | grep -q 'emcc'; then \
-		echo "Generating credits with Emscripten build info..."; \
-		sed 's/.*%%EMSCRIPTEN_CREDITS%%.*/1 Built with Emscripten $(EMVERSION)/' $< > $@; \
-	else \
-		echo "Generating credits..."; \
-		sed '/%%EMSCRIPTEN_CREDITS%%/d' $< > $@; \
-	fi
+all: $(PROG) $(MAP_PROG) $(GENERATED_CREDITS)
 
 $(OUT)/%.o: %.c %.h $(DEPS)
 	@mkdir -p $(@D)

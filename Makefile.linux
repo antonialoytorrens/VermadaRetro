@@ -57,6 +57,10 @@ $(PROG): $(GAME_OBJS)
 $(MAP_PROG): $(MAP_OBJS)
 	$(CC) -o $@ $(MAP_OBJS) $(LDFLAGS)
 
+$(GENERATED_CREDITS): $(RAW_CREDITS)
+	@echo "Generating credits..."; \
+	sed '/%%EMSCRIPTEN_CREDITS%%/d' $< > $@; \
+
 # prepare an archive for the program
 dist:
 	$(RM) -rf $(PROG)-$(VERSION).$(REVISION)
