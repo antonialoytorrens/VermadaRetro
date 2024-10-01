@@ -2,6 +2,7 @@ PROG = saVermadaRetro
 
 CC = ~/emsdk/upstream/emscripten/emcc --use-port=sdl2_image:formats=png --use-port=sdl2_mixer --use-port=sdl2_ttf
 LD = ~/emsdk/upstream/bin/wasm-ld
+EMVERSION = $(shell $(CC) --version | grep -oP '\d+\.\d+\.\d+')
 PREFIX ?= /usr
 BIN_DIR ?= $(PREFIX)/bin
 DATA_DIR ?= /opt/$(PROG)
