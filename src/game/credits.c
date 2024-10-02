@@ -125,7 +125,7 @@ static void loadCredits(void)
 
 		i = 0;
 
-		while (*p != '\n')
+		while (*p != '\0' && *p != '\n')
 		{
 			line[i++] = *p;
 
