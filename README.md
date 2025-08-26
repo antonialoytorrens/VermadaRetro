@@ -4,9 +4,7 @@ This is an asset-flipped game, clone of [waterCloset](https://github.com/stephen
 
 The game source code can be found [here](https://github.com/antonialoytorrens/VermadaRetro).
 
-Scanning the hidden QR Code, it leads to a [website](https://antonialoytorrens.github.io/VermadaRetro) that contained this game (see _web_ branch).
-
-The assets are inspired on the event I was part of.
+The assets are inspired on the event I was part of. Scanning the hidden QR Code in the event, lead to a [website](https://antonialoytorrens.github.io/VermadaRetro) that contained this game (see _web_ branch).
 
 Attribution is properly cited in the credits game.
 
