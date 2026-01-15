@@ -1,0 +1,28 @@
+---
+# clang-tidy configuration for C99 projects
+# Place this file in your project root
+# -cert-* is for eliminating unsafe API that were introduced in later standards
+
+# -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling
+# Suppress C11 recommendations, since we are using C99
+
+Checks: >
+  *,
+  -llvm-header-guard,
+  -fuchsia-*,
+  -android-*,
+  -altera-*,
+  -cppcoreguidelines-*,
+  -cert-*,
+  -modernize-*,
+  -clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,
+  -readability-isolate-declaration,
+  -readability-identifier-naming
+
+WarningsAsErrors: ''
+
+HeaderFilterRegex: '.*'
+
+CheckOptions:
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case

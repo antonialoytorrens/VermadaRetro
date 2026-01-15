@@ -1,0 +1,16 @@
+# Suppress timeout binary leaks
+{
+   timeout_timer_create_leak
+   Memcheck:Leak
+   ...
+   fun:timer_create@@GLIBC_2.3.3
+   obj:/usr/bin/timeout
+}
+
+# Suppress SDL leaks
+{
+   sdl_init_leak
+   Memcheck:Leak
+   ...
+   obj:*/libSDL2*.so*
+}

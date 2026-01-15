@@ -17,3 +17,7 @@ dist
 
 # credits
 data/misc/credits.txt
+
+.env
+.scannerwork
+report
