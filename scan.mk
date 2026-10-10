@@ -199,9 +199,9 @@ scan-valgrind:
 # .PHONY: scan-drmemory
 # scan-drmemory:
 # 	@mkdir -p $(REPORT_DIR)
-# 	SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy \
-# 		drmemory -batch -results_to_stderr \
-# 		-logdir $(REPORT_DIR)/drmemory \
+# 	SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
+# 		drmemory -batch -results_to_stderr
+# 		-logdir $(REPORT_DIR)/drmemory
 # 		-- ./$(PROG) 2>&1 | tee $(REPORT_DIR)/drmemory-report.txt || true
 
 # coverage - Code coverage analysis (requires gcov build)

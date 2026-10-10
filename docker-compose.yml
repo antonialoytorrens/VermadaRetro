@@ -1,0 +1,16 @@
+services:
+  ci:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ci
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    env_file:
+      - .env
+    environment:
+      - SONAR_TOKEN
+      - SONAR_HOST_URL
+      - SONAR_PROJECT_KEY
+
