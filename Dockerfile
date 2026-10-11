@@ -16,5 +16,10 @@ RUN dpkg -i /tmp/sonar-scanner.deb || (apt-get update && apt-get install -yqf) \
     && rm -f /tmp/sonar-scanner.deb \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+RUN useradd --create-home --shell /bin/bash builder \
+	&& mkdir -p /workspace \
+	&& chown builder:builder /workspace
+
+USER builder
 WORKDIR /workspace
 CMD ["bash"]
